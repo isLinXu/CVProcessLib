@@ -23,7 +23,7 @@ import math
 
 def panelAbstract(srcImage):
     '''
-     图片前景与背景的分割
+    图片前景与背景的分割
     :param srcImage:
     :return:
     '''

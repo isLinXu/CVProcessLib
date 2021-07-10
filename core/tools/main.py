@@ -1,5 +1,6 @@
 import cv2
 
+
 from core.tools.image_filtering import show_filtering
 from core.tools.image_outline import show_outline
 from core.tools.image_transformation import show_transformation
@@ -7,8 +8,13 @@ from core.tools.utils import plt_save
 from core.tools.image_color import show_hsv
 from core.tools.image_enhancement import show_enhancement
 
+import os, sys
+# 基本路径
+RUN_PATH = os.path.dirname(__file__)
+
 if __name__ == '__main__':
-    file_path = '/home/linxu/opencv_tools-main/images/test1.png'
+    print(RUN_PATH)
+    file_path = RUN_PATH+'/image/test.png'
     # file_path = '/home/linxu/opencv_tools-main/images/test1.png'
 
     origin = cv2.imread(file_path)

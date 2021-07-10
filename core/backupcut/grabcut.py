@@ -1,4 +1,10 @@
-
+'''
+@author: linxu
+@contact: 17746071609@163.com
+@time: 2020-09-24 上午10:23
+@desc: 视觉图像背景分割技术
+       漫水填充算法
+'''
 import numpy as np
 import cv2
 

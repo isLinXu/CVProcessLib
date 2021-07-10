@@ -8,8 +8,8 @@
 import cv2
 import numpy as np
 
-from core.LineDetection import line_detection
-from core.tools.image_enhancement import m_s_r_c_r, his_equl_color
+from core.line.LineDetection import line_detection
+from core.tools.image_enhancement import m_s_r_c_r
 
 
 def imgTransmat(img, nodes):

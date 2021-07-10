@@ -138,6 +138,6 @@ def show_filtering(src):
     image_gray = cv2.cvtColor(src=src, code=cv2.COLOR_BGR2GRAY)
     gauss20 = cv2.GaussianBlur(src=image_gray, ksize=(0, 0), sigmaX=2.0)
     gauss22 = cv2.GaussianBlur(src=image_gray, ksize=(0, 0), sigmaX=2.2)
-    subtract = cv2.subtvract(src1=gauss22, src2=gauss20, dtype=cv2.CV_32F)
+    subtract = cv2.subtract(src1=gauss22, src2=gauss20, dtype=cv2.CV_32F)
     subtract = np.uint8(subtract)
     plt_save(image=subtract, title='cv2.subtract gauss22 - gauss20')

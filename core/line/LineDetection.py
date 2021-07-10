@@ -1,6 +1,9 @@
 
 '''
- """
+@author: linxu
+@contact: 17746071609@163.com
+@time: 2021-02-24 上午11:16
+@desc: 霍夫线检测
  HoughLines(image, rho, theta, threshold, lines=None, srn=None, stn=None, min_theta=None, max_theta=None)
  第一个参数image：是canny边缘检测后的图像
  第二个参数rho和第三个参数theta：对应直线搜索的步长。在本例中，函数将通过步长为1的半径和步长为π/180的角来搜索所有可能的直线。
