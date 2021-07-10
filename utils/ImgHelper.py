@@ -8,7 +8,7 @@
 
 import os, cv2, base64
 import numpy as np
-from temp.initialize import RUN_PATH
+from temptest.initialize import RUN_PATH
 from utils import PubHelper
 
 def cv2ImgToBytes(img):

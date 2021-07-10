@@ -1,6 +1,5 @@
 
 '''
-
  """
  HoughLines(image, rho, theta, threshold, lines=None, srn=None, stn=None, min_theta=None, max_theta=None)
  第一个参数image：是canny边缘检测后的图像

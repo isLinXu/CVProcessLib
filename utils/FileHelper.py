@@ -7,7 +7,7 @@
 '''
 
 import os, base64
-from temp.initialize import RUN_PATH, ENV_PATH
+from temptest.initialize import RUN_PATH, ENV_PATH
 from utils import PubHelper
 
 def Base64SteamToFile(stream, stripstr=""):

@@ -230,7 +230,7 @@ if __name__ == "__main__":
     print(is_true)
     # 17
     # import os
-    # path = r"C:\temp\work\wgs\1_0_0_10\white\90.jpg"
+    # path = r"C:\temptest\work\wgs\1_0_0_10\white\90.jpg"
     # img = cv2.imread(os.path.join(path))
     # img_result = respirator_color(img)
     # # ture:红，false：白

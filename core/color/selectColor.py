@@ -34,7 +34,7 @@ cv2.createTrackbar('highVal', 'colorTest', icol[5], 255, nothing)
 # Raspberry pi file path example.
 # frame = cv2.imread('/home/pi/python3/opencv/color-test/colour-circles-test.jpg')
 # Windows file path example.
-file = '/home/linxu/PycharmProjects/CVProcess/images/表计/test1.png'
+file = '/images/表计/test1.png'
 # file = '/home/linxu/Desktop/武高所实地相关材料/wugaosuo/1_0_0_1020_1_0/3.jpeg'
 frame = cv2.imread(file)
 
