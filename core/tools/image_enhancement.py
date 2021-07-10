@@ -1,3 +1,11 @@
+'''
+@author: linxu
+@contact: 17746071609@163.com
+@time: 2021-02-24 上午11:16
+@desc:  视觉图像色彩均衡相关技术
+
+'''
+
 import random
 import sys
 
@@ -49,6 +57,11 @@ def show_enhancement(src):
 
 
 def white_balance(src):
+    '''
+    白平衡
+    :param src: 原图
+    :return:
+    '''
     r, g, b = cv2.split(src)
     r_avg = cv2.mean(r)[0]
     g_avg = cv2.mean(g)[0]
@@ -69,6 +82,11 @@ def white_balance(src):
 
 # 灰度世界算法
 def grey_world(nimg):
+    '''
+    灰度世界算法
+    :param nimg:
+    :return:
+    '''
     nimg = nimg.transpose(2, 0, 1).astype(np.uint32)
     avg_b = np.average(nimg[0])
     avg_g = np.average(nimg[1])

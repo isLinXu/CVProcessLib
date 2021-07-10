@@ -1,3 +1,13 @@
+'''
+@author: linxu
+@contact: 17746071609@163.com
+@time: 2020-02-24 上午9:44
+@desc:  视觉图像色彩空间相关技术
+        色度/饱和度/亮度
+
+'''
+
+
 import cv2 as cv
 import numpy as np
 

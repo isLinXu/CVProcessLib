@@ -1,3 +1,11 @@
+'''
+@author: linxu
+@contact: 17746071609@163.com
+@time: 2021-01-24 上午10:46
+@desc: 视觉图像形态学相关技术
+
+'''
+
 import cv2
 import numpy as np
 

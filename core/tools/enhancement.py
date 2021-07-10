@@ -1,3 +1,10 @@
+'''
+@author: linxu
+@contact: 17746071609@163.com
+@time: 2020-05-24 上午10:24
+@desc: 视觉图像增强技术
+'''
+
 import cv2
 import numpy as np
 
@@ -131,4 +138,4 @@ if __name__ == '__main__':
     dst4 = m_s_r_c_r(src, sigma_list=[15, 80, 250])
     cv2.imshow('dst4', dst4)
     cv2.waitKey()
-    # 算法5:多尺度视网膜与颜色恢复
+

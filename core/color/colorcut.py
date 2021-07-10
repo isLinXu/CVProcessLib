@@ -2,7 +2,7 @@ import cv2
 import numpy as np
 
 # Step1. 转换为HSV
-img = cv2.imread('/images/表计/test1.png')
+img = cv2.imread('../../images/表计/test1.png')
 hue_image = cv2.cvtColor(img, cv2.COLOR_BGR2HSV)
 
 # Step2. 用颜色分割图像

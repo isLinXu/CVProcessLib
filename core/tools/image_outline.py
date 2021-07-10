@@ -1,3 +1,11 @@
+'''
+@author: linxu
+@contact: 17746071609@163.com
+@time: 2019-07-24 上午10:58
+@desc:  视觉图像轮廓外边
+
+'''
+
 import cv2
 import numpy as np
 

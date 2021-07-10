@@ -1,3 +1,10 @@
+'''
+@author: linxu
+@contact: 17746071609@163.com
+@time: 2021-02-24 上午11:16
+@desc: 视觉图像滤波相关技术
+
+'''
 import cv2
 import numpy as np
 
