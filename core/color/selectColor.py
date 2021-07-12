@@ -1,11 +1,16 @@
 #!/usr/bin/env python3
+'''
+@author: linxu
+@contact: 17746071609@163.com
+@time: 2021-05-26 上午11:54
+@desc: 滚动条拖动选取颜色hsv空间
 
-"""
 File: opencv-open-file-color-test.py
 
 This Python 3 code is published in relation to the article below:
 https://www.bluetin.io/opencv/opencv-color-detection-filtering-python/
-"""
+'''
+
 
 from __future__ import division
 import cv2
@@ -34,7 +39,8 @@ cv2.createTrackbar('highVal', 'colorTest', icol[5], 255, nothing)
 # Raspberry pi file path example.
 # frame = cv2.imread('/home/pi/python3/opencv/color-test/colour-circles-test.jpg')
 # Windows file path example.
-file = '/images/表计/test1.png'
+file = '/home/linxu/PycharmProjects/LineCheck/image/100.jpg'
+# file = '/images/表计/test1.png'
 # file = '/home/linxu/Desktop/武高所实地相关材料/wugaosuo/1_0_0_1020_1_0/3.jpeg'
 frame = cv2.imread(file)
 

@@ -1,3 +1,11 @@
+'''
+@author: linxu
+@contact: 17746071609@163.com
+@time: 2021-07-08 上午10:54
+@desc: 颜色阈值匹配技术
+
+'''
+
 import numpy as np
 import cv2
 

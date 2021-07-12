@@ -1,3 +1,10 @@
+'''
+@author: linxu
+@contact: 17746071609@163.com
+@time: 2021-06-08 上午09:24
+@desc: 视频逐帧存为图片
+
+'''
 
 import cv2
 import os
@@ -5,7 +12,7 @@ def save_from_video(file_path, save_path):
     # 提取的视频路径
     video_path = os.path.join(file_path)
     times = 0
-    # 提取视频的频率，每１帧提取一个
+    # 提取视频的频率，每1帧提取一个
     frameFrequency = 1
     # 输出图片到当前目录文件夹下
     outPutDirName = save_path
@@ -28,6 +35,6 @@ def save_from_video(file_path, save_path):
 if __name__ == '__main__':
     # file_path = '/home/linxu/Documents/Work/sources/交通灯识别（重视红绿灯）/交通灯识别（重视红绿灯）/红绿灯最终测试视频.mp4'
     # file_path = '/home/linxu/Documents/Work/sources/交通灯识别（重视红绿灯）/交通灯识别（重视红绿灯）/test3.avi'
-    file_path = '/home/linxu/Documents/Work/sources/交通灯识别（重视红绿灯）/交通灯识别（重视红绿灯）/红绿灯测试视频.mp4'
-    save_path = '/home/linxu/Documents/Work/sources/交通灯识别（重视红绿灯）/交通灯识别（重视红绿灯）/image/'
+    file_path = '/home/linxu/PycharmProjects/LineCheck/test5.avi'
+    save_path = '/home/linxu/PycharmProjects/LineCheck/'
     save_from_video(file_path,save_path)
