@@ -1,21 +1,115 @@
 # CV-Process-Lib
 
-#### 介绍
-{**以下是 Gitee 平台说明，您可以替换此简介**
-Gitee 是 OSCHINA 推出的基于 Git 的代码托管平台（同时支持 SVN）。专为开发者提供稳定、高效、安全的云端软件开发协作平台
-无论是个人、团队、或是企业，都能够用 Gitee 实现代码托管、项目管理、协作开发。企业项目请看 [https://gitee.com/enterprises](https://gitee.com/enterprises)}
+#### 一、介绍
 
-#### 软件架构
+本项目为海峡智汇研发中心算法部门图像算法组为公司机器人视觉处理需要专门建立的图像处理库。
+
+#### 二、处理库架构
+
+##### 2.1 基本介绍
+
+该项目主要以Python为主要开发语言进行编写。
+
+按照金字塔分层设计的思想，分为以下三层：
+
+底层设计为独立模块[core]，主要为一些通用性、功能性的核心组件
+
+中层设计为业务封装[package]，主要根据项目业务需求调用不同的组件和模型进行封装使用；
+
+顶层设计为独立项目[project]，主要与公司产品业务需求进行对接。
+
+##### 2.2 目录树结构
+
+```shell
+cvprocess-lib
+├── core
+│   ├── cv
+│   │   ├── color
+│   │   │   ├── colorcut.py
+│   │   │   ├── colorDection.py
+│   │   │   ├── colorMatching.py
+│   │   │   ├── ColorRecognition.py
+│   │   │   └── selectColor.py
+│   │   ├── contour
+│   │   │   ├── prewitt.py
+│   │   │   └── selectCanny.py
+│   │   ├── features
+│   │   │   ├── features.py
+│   │   │   └── globals.py
+│   │   ├── imgtransform
+│   │   │   ├── RotationCorrection.py
+│   │   │   ├── rotation.py
+│   │   │   └── scaleDown.py
+│   │   ├── light
+│   │   │   └── light_adapt.py
+│   │   ├── line
+│   │   │   └── LineDetection.py
+│   │   ├── ROI
+│   │   │   ├── DP_ROI.py
+│   │   │   └── selectROI.py
+│   │   ├── subtractor
+│   │   │   ├── BackgroundSubtractor.py
+│   │   │   ├── grabcut.py
+│   │   │   ├── panelAbstractCut.py
+│   │   │   └── test.py
+│   │   ├── threshold
+│   │   │   ├── thresholdSegmentations.py
+│   │   │   └── thresholdSplit.py
+│   │   ├── tools
+│   │   │   ├── enhancement.py
+│   │   │   ├── image
+│   │   │   │   └── test.png
+│   │   │   ├── image_color.py
+│   │   │   ├── image_enhancement.py
+│   │   │   ├── image_filtering.py
+│   │   │   ├── image_outline.py
+│   │   │   ├── image_transformation.py
+│   │   │   ├── main.py
+│   │   │   └── utils.py
+│   │   └── video
+│   │       ├── getvideo.py
+│   │       └── videoprocess.py
+│   ├── log
+│   │   └── err_log
+│   │       └── except_err.py
+│   ├── math
+│   │   └── hx_math.py
+│   └── network
+│       └── Crawler_downloads_Baidu_pictures.py
+├── images
+│   ├── 表计
+│   ├── 呼吸器
+│   ├── 数显表
+│   └── 状态指示器
+├── initize.py
+├── LICENSE
+├── package
+│   ├── Respirator_Recognition.py
+│   └── StatusIndicator_Recognition.py
+├── README.md
+├── temptest
+│   └── result.py
+├── testfunc.py
+├── tools
+│   ├── cut_label_image.py
+│   └── XML_tran_coco.py
+└── utils
+    ├── globals.py
+    └── __init__.py
+```
+
+
+
 软件架构说明
 
 
-#### 安装教程
+#### 三、依赖项
 
 1.  xxxx
 2.  xxxx
 3.  xxxx
 
-#### 使用说明
+#### 四、使用说明
 
 1.  xxxx
 2.  xxxx
@@ -28,12 +122,4 @@ Gitee 是 OSCHINA 推出的基于 Git 的代码托管平台（同时支持 SVN�
 3.  提交代码
 4.  新建 Pull Request
 
-
-#### 特技
-
-1.  使用 Readme\_XXX.md 来支持不同的语言，例如 Readme\_en.md, Readme\_zh.md
-2.  Gitee 官方博客 [blog.gitee.com](https://blog.gitee.com)
-3.  你可以 [https://gitee.com/explore](https://gitee.com/explore) 这个地址来了解 Gitee 上的优秀开源项目
-4.  [GVP](https://gitee.com/gvp) 全称是 Gitee 最有价值开源项目，是综合评定出的优秀开源项目
-5.  Gitee 官方提供的使用手册 [https://gitee.com/help](https://gitee.com/help)
-6.  Gitee 封面人物是一档用来展示 Gitee 会员风采的栏目 [https://gitee.com/gitee-stars/](https://gitee.com/gitee-stars/)
+6.  https://gitee.com/gitee-stars/)
