@@ -4,13 +4,7 @@
 @contact: 17746071609@163.com
 @time: 2021-05-26 上午11:54
 @desc: 滚动条拖动选取颜色hsv空间
-
-File: opencv-open-file-color-test.py
-
-This Python 3 code is published in relation to the article below:
-https://www.bluetin.io/opencv/opencv-color-detection-filtering-python/
 '''
-
 
 from __future__ import division
 import cv2
@@ -21,77 +15,88 @@ def nothing(*arg):
     pass
 
 
-# Initial HSV GUI slider values to load on program start.
-# icol = (36, 202, 59, 71, 255, 255)  # Green
-# icol = (18, 0, 196, 36, 255, 255)  # Yellow
-# icol = (89, 0, 0, 125, 255, 255)  # Blue
-icol = (0, 100, 80, 10, 255, 255)   # Red
-cv2.namedWindow('colorTest')
-# Lower range colour sliders.
-cv2.createTrackbar('lowHue', 'colorTest', icol[0], 255, nothing)
-cv2.createTrackbar('lowSat', 'colorTest', icol[1], 255, nothing)
-cv2.createTrackbar('lowVal', 'colorTest', icol[2], 255, nothing)
-# Higher range colour sliders.
-cv2.createTrackbar('highHue', 'colorTest', icol[3], 255, nothing)
-cv2.createTrackbar('highSat', 'colorTest', icol[4], 255, nothing)
-cv2.createTrackbar('highVal', 'colorTest', icol[5], 255, nothing)
+def setTrackbar(setcolor='red'):
+    # 初始化滑动条数值
+    if setcolor == 'red':
+        icol = (0, 100, 80, 10, 255, 255)  # Red
+    elif setcolor == 'yellow':
+        icol = (18, 0, 196, 36, 255, 255)  # Yellow
+    elif setcolor == 'blue':
+        icol = (89, 0, 0, 125, 255, 255)  # Blue
+    elif setcolor == 'green':
+        icol = (36, 202, 59, 71, 255, 255)  # Green
+    else:
+        icol = (0, 0, 0, 255, 255, 255)
 
-# Raspberry pi file path example.
-# frame = cv2.imread('/home/pi/python3/opencv/color-test/colour-circles-test.jpg')
-# Windows file path example.
-file = '/home/linxu/PycharmProjects/LineCheck/image/100.jpg'
-# file = '/images/表计/test1.png'
-# file = '/home/linxu/Desktop/武高所实地相关材料/wugaosuo/1_0_0_1020_1_0/3.jpeg'
-frame = cv2.imread(file)
+    cv2.namedWindow('colorTest')
+    # Lower阈值范围滑动条
+    cv2.createTrackbar('lowHue', 'colorTest', icol[0], 255, nothing)
+    cv2.createTrackbar('lowSat', 'colorTest', icol[1], 255, nothing)
+    cv2.createTrackbar('lowVal', 'colorTest', icol[2], 255, nothing)
+    # Higher阈值范围滑动条
+    cv2.createTrackbar('highHue', 'colorTest', icol[3], 255, nothing)
+    cv2.createTrackbar('highSat', 'colorTest', icol[4], 255, nothing)
+    cv2.createTrackbar('highVal', 'colorTest', icol[5], 255, nothing)
 
-while True:
-    # Get HSV values from the GUI sliders.
-    lowHue = cv2.getTrackbarPos('lowHue', 'colorTest')
-    lowSat = cv2.getTrackbarPos('lowSat', 'colorTest')
-    lowVal = cv2.getTrackbarPos('lowVal', 'colorTest')
-    highHue = cv2.getTrackbarPos('highHue', 'colorTest')
-    highSat = cv2.getTrackbarPos('highSat', 'colorTest')
-    highVal = cv2.getTrackbarPos('highVal', 'colorTest')
 
-    # Show the original image.
-    cv2.imshow('frame', frame)
+def slideColor(frame):
+    while True:
+        # 从GUI滑块获取HSV值。
+        lowHue = cv2.getTrackbarPos('lowHue', 'colorTest')
+        lowSat = cv2.getTrackbarPos('lowSat', 'colorTest')
+        lowVal = cv2.getTrackbarPos('lowVal', 'colorTest')
+        highHue = cv2.getTrackbarPos('highHue', 'colorTest')
+        highSat = cv2.getTrackbarPos('highSat', 'colorTest')
+        highVal = cv2.getTrackbarPos('highVal', 'colorTest')
 
-    # Blur methods available, comment or uncomment to try different blur methods.
-    frameBGR = cv2.GaussianBlur(frame, (7, 7), 0)
-    # frameBGR = cv2.medianBlur(frameBGR, 7)
-    # frameBGR = cv2.bilateralFilter(frameBGR, 15 ,75, 75)
-    """kernal = np.ones((15, 15), np.float32)/255
-    frameBGR = cv2.filter2D(frameBGR, -1, kernal)"""
+        # 显示原始图像。
+        cv2.imshow('frame', frame)
 
-    # Show blurred image.
-    cv2.imshow('blurred', frameBGR)
+        # 可选择不同的模糊方法
+        frameBGR = cv2.GaussianBlur(frame, (7, 7), 0)
+        # frameBGR = cv2.medianBlur(frameBGR, 7)
+        # frameBGR = cv2.bilateralFilter(frameBGR, 15 ,75, 75)
+        # kernal = np.ones((15, 15), np.float32)/255
+        # frameBGR = cv2.filter2D(frameBGR, -1, kernal)
+        # cv2.imshow('frameBGR_kernal', frameBGR)
 
-    # HSV (Hue, Saturation, Value).
-    # Convert the frame to HSV colour model.
-    hsv = cv2.cvtColor(frameBGR, cv2.COLOR_BGR2HSV)
+        # 显示模糊图像。
+        cv2.imshow('blurred', frameBGR)
+        # 转换为HSV颜色空间
+        hsv = cv2.cvtColor(frameBGR, cv2.COLOR_BGR2HSV)
 
-    # HSV values to define a colour range.
-    colorLow = np.array([lowHue, lowSat, lowVal])
-    colorHigh = np.array([highHue, highSat, highVal])
-    mask = cv2.inRange(hsv, colorLow, colorHigh)
-    # Show the first mask
-    cv2.imshow('mask-plain', mask)
+        # 定义HSV值颜色范围
+        colorLow = np.array([lowHue, lowSat, lowVal])
+        colorHigh = np.array([highHue, highSat, highVal])
+        mask = cv2.inRange(hsv, colorLow, colorHigh)
+        # 显示mask
+        cv2.imshow('mask-plain', mask)
 
-    kernal = cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (7, 7))
-    mask = cv2.morphologyEx(mask, cv2.MORPH_CLOSE, kernal)
-    mask = cv2.morphologyEx(mask, cv2.MORPH_OPEN, kernal)
+        kernal = cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (7, 7))
+        mask = cv2.morphologyEx(mask, cv2.MORPH_CLOSE, kernal)
+        mask = cv2.morphologyEx(mask, cv2.MORPH_OPEN, kernal)
 
-    # Show morphological transformation mask
-    cv2.imshow('mask', mask)
+        # 显示形态变换遮罩
+        cv2.imshow('mask', mask)
 
-    # Put mask over top of the original image.
-    result = cv2.bitwise_and(frame, frame, mask=mask)
+        # 将遮罩放在原始图像的上方。
+        result = cv2.bitwise_and(frame, frame, mask=mask)
 
-    # Show final output image
-    cv2.imshow('colorTest', result)
+        # 显示最终输出图像
+        cv2.imshow('colorTest', result)
 
-    k = cv2.waitKey(5) & 0xFF
-    if k == 27:
-        break
+        k = cv2.waitKey(5) & 0xFF
+        if k == 27:
+            print('colorLow', colorLow)
+            print('colorHigh', colorHigh)
+            break
 
-cv2.destroyAllWindows()
+    cv2.destroyAllWindows()
+
+
+
+if __name__ == '__main__':
+    file = '/home/linxu/PycharmProjects/LineCheck/image1/158.jpg'
+    frame = cv2.imread(file)
+    setTrackbar('blue')
+    slideColor(frame)

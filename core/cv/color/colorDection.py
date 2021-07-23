@@ -6,25 +6,31 @@
 '''
 
 import cv2
-
-img = cv2.imread('/home/linxu/PycharmProjects/CVProcess/images/表计/test1.png')
-gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
-hsv = cv2.cvtColor(img, cv2.COLOR_BGR2HSV)
-
 def mouse_click(event, x, y, flags, para):
+    global img
+    global hsv
+    global gray
+    global pointIndex
+    global pts
+    gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+    hsv = cv2.cvtColor(img, cv2.COLOR_BGR2HSV)
     if event == cv2.EVENT_LBUTTONDOWN:  # 左边鼠标点击
+        cv2.circle(img, (x, y), 5, (0, 255, 0), -1)
         print('PIX:', x, y)
         print("BGR:", img[y, x])
         print("GRAY:", gray[y, x])
         print("HSV:", hsv[y, x])
+        print("------------------------")
 
-
-if __name__ == '__main__':
-    cv2.namedWindow("img")
-    cv2.setMouseCallback("img", mouse_click)
-
+def show_window():
     while True:
         cv2.imshow('img', img)
-        if cv2.waitKey() == ord('q'):
+        if (cv2.waitKey(20) & 0xFF == 27):
             break
+
+if __name__ == '__main__':
+    img = cv2.imread('/home/linxu/PycharmProjects/CVProcessLib/images/呼吸器/4.jpeg')
+    cv2.namedWindow("img")
+    cv2.setMouseCallback("img", mouse_click)
+    show_window()
     cv2.destroyAllWindows()
