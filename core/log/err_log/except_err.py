@@ -18,10 +18,11 @@ logger.addHandler(rHandler)
 logger.addHandler(console)
 
 
-# logger.info("Start print log")
-# logger.debug("Do something")
-# logger.warning("Something maybe fail.")
-# logger.info("Finish")
+logger.info("Start print log")
+logger.debug("Do something")
+logger.warning("Something maybe fail.")
+logger.info("Finish")
+
 def err_log(name, e):
     err = "Method：", name, "Tips:", str(e)
     logger.error(err)

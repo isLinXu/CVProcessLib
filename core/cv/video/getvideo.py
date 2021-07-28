@@ -1,11 +1,10 @@
 '''
-
-
+@author: linxu
+@contact: 17746071609@163.com
+@time: 2021-07-08 上午10:24
+@desc: 从摄像头中存储视频
 '''
-
 import cv2
-
-
 
 def get_vedio():
     cap = cv2.VideoCapture(0)
@@ -38,4 +37,5 @@ def show_camera():
 
 
 if __name__ == "__main__":
+    show_camera()
     get_vedio()

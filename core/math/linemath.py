@@ -8,26 +8,42 @@ def func(a, x):
     k, b = a
     return k * x + b
 
-
 # 残差
 def dist(a, x, y):
+    '''
+    求seg_img图中的直线与垂直方向的夹角
+    :param a:
+    :param x:
+    :param y:
+    :return:
+    '''
     return func(a, x) - y
-    #  求seg_img图中的直线与垂直方向的夹角
-
 
 def fitting(x_list, y_list):
-    '''最小二乘法拟合直线
-    x_list:所有x坐标点
-    y_list:所有y坐标点
-    len(x_list)==len(y_list)'''
+    '''
+    最小二乘法拟合直线
+    len(x_list)==len(y_list)
+    :param x_list: 所有x坐标点
+    :param y_list: 所有y坐标点
+    :return:
+    '''
+
+
     param = [0, 0]
     var = leastsq(dist, param, args=(np.array(x_list), np.array(y_list)))
     k, b = var[0]
     return k, b
 
 
-######已知坐标两点求K,B直线方程#####
 def line_kb(max_x, max_y, min_x, min_y):
+    '''
+    已知坐标两点求K,B直线方程
+    :param max_x:
+    :param max_y:
+    :param min_x:
+    :param min_y:
+    :return:
+    '''
     if (max_x - min_x)==0 or ((max_x - min_x)<0.1 and (max_x - min_x)>-0.1 ):
         return 0,0
     k = (max_y - min_y) / (max_x - min_x)
@@ -36,8 +52,14 @@ def line_kb(max_x, max_y, min_x, min_y):
 
 
 
-######已知一组坐标点及y最大值求当y最大时x最大或最小值#####
 def find_minx(y_list, y_value, x_list):
+    '''
+    已知一组坐标点及y最大值求当y最大时x最大或最小值
+    :param y_list:
+    :param y_value:
+    :param x_list:
+    :return:
+    '''
     finally_pos = 0
     min_x = 10000
     for i in range(y_list.count(y_value)):
@@ -52,6 +74,13 @@ def find_minx(y_list, y_value, x_list):
 
 
 def find_maxy(y_list, y_value, x_list):
+    '''
+    已知一组坐标点及y最大值求当x最大时y最大或最小值
+    :param y_list:
+    :param y_value:
+    :param x_list:
+    :return:
+    '''
     finally_pos = 0
     min_x = 0
     for i in range(y_list.count(y_value)):
@@ -63,19 +92,29 @@ def find_maxy(y_list, y_value, x_list):
         finally_pos += first_pos
         y_list = y_list[first_pos:]
     return min_x
+
 def hx_circle(x1, y1, x2, y2, x3, y3):
-    '''已知圆上三点坐标,得出圆心和半径'''
+    '''
+    已知圆上三点坐标,得出圆心和半径
+    :param x1:
+    :param y1:
+    :param x2:
+    :param y2:
+    :param x3:
+    :param y3:
+    :return:
+    '''
     a = x1 - x2
     b = y1 - y2
     c = x1 - x3
     d = y1 - y3
     a1 = ((x1 * x1 - x2 * x2) + (y1 * y1 - y2 * y2)) / 2.0
     a2 = ((x1 * x1 - x3 * x3) + (y1 * y1 - y3 * y3)) / 2.0
-    theta = b * c - a * d;
+    theta = b * c - a * d
     if abs(theta) < 1e-7:
         return -1
-    x0 = (b * a2 - d * a1) / theta;
-    y0 = (c * a1 - a * a2) / theta;
+    x0 = (b * a2 - d * a1) / theta
+    y0 = (c * a1 - a * a2) / theta
     r = np.sqrt(pow((x1 - x0), 2) + pow((y1 - y0), 2))
     return x0,y0,r
 
