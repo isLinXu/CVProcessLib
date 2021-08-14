@@ -42,7 +42,7 @@ def threshold_segmentation(thresh):
 
 if __name__ == '__main__':
     # 载入原图，转化为灰度图像,并通过cv2.resize()等比调整图像大小
-    img_original=cv2.imread('/home/linxu/PycharmProjects/CVProcess/images/表计/test1.png')
+    img_original=cv2.imread('/home/linxu/PycharmProjects/CVProcessLib/images/数显表/1.jpeg')
     img_original = cv2.cvtColor(img_original, cv2.COLOR_RGB2GRAY)
     # img_original=cv2.resize(gray,(0,0),fx=0.3,fy=0.3)
     # 初始化阈值，定义全局变量imgs

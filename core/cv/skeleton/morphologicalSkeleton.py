@@ -4,7 +4,7 @@ import cv2
 import sys
 
 if __name__ == '__main__':
-    im_path = '/home/hxzh02/PycharmProjects/cvprocess-lib/images/呼吸器/1.jpeg'
+    im_path = '/home/linxu/PycharmProjects/CVProcessLib/images/呼吸器/1.jpeg'
     src = cv2.imread(im_path, 0)
     cv2.imshow('src', src)
     cv2.waitKey()

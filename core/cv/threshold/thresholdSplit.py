@@ -31,7 +31,7 @@ def get_Otsu_value(delta):
     return loc[0]
 
 if __name__ == '__main__':
-    file = '/home/linxu/PycharmProjects/CVProcess/images/表计/test1.png'
+    file = '/home/linxu/PycharmProjects/CVProcessLib/images/表计/1.jpeg'
     img = cv2.imread(file)
     cv2.imshow('img', img)
     dst = get_Otsu_value(img)
