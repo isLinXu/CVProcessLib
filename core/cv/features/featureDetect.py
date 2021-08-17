@@ -1,10 +1,11 @@
 # coding: utf-8
-"""
- Computer Vision 2017 (week 3,4): Example of feature matching & homography
-   Hiroaki Kawashima <kawashima@i.kyoto-u.ac.jp>
-
-   Ref: https://docs.opencv.org/3.0-beta/doc/py_tutorials/py_feature2d/py_feature_homography/py_feature_homography.html
-"""
+'''
+@author: linxu
+@contact: 17746071609@163.com
+@time: 2021-05-26 上午11:54
+@desc: 基于特征匹配的实时平面目标检测算法
+@Ref: https://docs.opencv.org/3.0-beta/doc/py_tutorials/py_feature2d/py_feature_homography/py_feature_homography.htm
+'''
 
 import numpy as np
 import cv2

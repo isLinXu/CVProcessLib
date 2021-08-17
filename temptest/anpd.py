@@ -94,7 +94,7 @@ class ANPD:
 anpd = ANPD()
 
 gray = cv2.imread("anpd_input.jpg", cv2.IMREAD_GRAYSCALE)
-
+# gray = cv2.imread("/home/hxzh02/图片/digta.png", cv2.IMREAD_GRAYSCALE)
 candidates = anpd.locate_licence_plate_candidates(gray)
 roi, lpCnt = anpd.locate_license_plate(gray, candidates)
 
