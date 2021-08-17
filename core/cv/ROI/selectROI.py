@@ -7,7 +7,7 @@
 import cv2
 import imutils
 
-img = cv2.imread("/images/表计/test1.png")
+img = cv2.imread("/home/linxu/PycharmProjects/CVProcessLib/images/状态指示器/2.jpeg")
 img = imutils.resize(img, width=500)
 
 roi = cv2.selectROI(windowName="selectROI", img=img, showCrosshair=True, fromCenter=False)
