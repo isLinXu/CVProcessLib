@@ -1,3 +1,10 @@
+
+'''
+@author: linxu
+@contact: 17746071609@163.com
+@time: 2021-08-20 上午11:54
+@desc: aruco_marker识别
+'''
 import numpy as np
 import time
 import cv2
@@ -84,6 +91,7 @@ while True:
         cv2.putText(frame, "No Ids", (0, 64), font, 1, (0, 255, 0), 2, cv2.LINE_AA)
 
     # 显示结果框架
+    cv2.namedWindow('frame',cv2.WINDOW_AUTOSIZE)
     cv2.imshow("frame", frame)
 
     key = cv2.waitKey(1)
