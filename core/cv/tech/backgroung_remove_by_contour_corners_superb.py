@@ -24,7 +24,7 @@ def removeBackGround():
     MASK_COLOR = (0.0, 0.0, 0.0)
 
     nn = 1
-    file_path = '/home/hxzh02/文档/defectDetect/金属锈蚀(复件)/src/2.jpg'
+    file_path = '/home/hxzh02/文档/defectDetect/金属锈蚀(复件)/src/13.jpg'
     img = cv2.imread(file_path)
     cv2.imshow('img', img)
     ho, wo = img.shape[:2]

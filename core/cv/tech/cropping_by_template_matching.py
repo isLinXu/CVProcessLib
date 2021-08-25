@@ -2,7 +2,7 @@
 ===============================================================================
 -- Author:      Hamid Doostmohammadi, Azadeh Nazemi
 -- Create date: 04/11/2020
--- Description:	This code uses Template Matching to crop images. 
+-- Description:	使用模板匹配来裁剪图像。
 -- Status:      In progress
 ================================================================================
 '''
@@ -53,5 +53,5 @@ for root, dirs, files in os.walk(sys.argv[1]):
             print(fn)
             h, w = image.shape[:2]
             waldo = cv2.imread("temp.jpg")
-            roi = matcher(waldo, puzzle)
+            roi = matcher(waldo, image)
             cv2.imwrite(filename, roi)
