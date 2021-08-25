@@ -55,7 +55,7 @@ def draw_roi(event, x, y, flags, param):
 if __name__ == '__main__':
 
     # 创建图像与窗口并将窗口与回调函数绑定
-    img = cv2.imread("/home/linxu/PycharmProjects/CVProcessLib/images/表计/1.jpeg")
+    img = cv2.imread("/home/hxzh02/PycharmProjects/cvprocess-lib/images/表计/1.jpeg")
     img = imutils.resize(img, width=500)
     cv2.namedWindow('image')
     cv2.setMouseCallback('image', draw_roi)

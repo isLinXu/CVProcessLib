@@ -106,7 +106,7 @@ class DataAugment:
 
 if __name__ == "__main__":
     demo = DataAugment(debug=True)
-    img = cv2.imread("/pathto/dataArgu/wr.jpg")
+    img = cv2.imread("/home/hxzh02/PycharmProjects/cvprocess-lib/images/lena.png")
 
     # 平移测试
     # (-0.3,-0.3),(0.3,0.3)

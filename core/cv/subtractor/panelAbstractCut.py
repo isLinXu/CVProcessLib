@@ -91,7 +91,8 @@ def panelAbstract(srcImage):
 
 if __name__=="__main__":
     # file = '/home/linxu/Desktop/1_0_0_1020_1_0/状态指示器/Green/123.jpeg'
-    file = '/home/linxu/Documents/Work/testpic/数显表/1/image_180.jpg'
+    # file = '/home/linxu/Documents/Work/testpic/数显表/1/image_180.jpg'
+    file = '/home/hxzh02/文档/defectDetect/金属锈蚀(复件)/src/285.jpg'
     srcImage = cv2.imread(file)
     cv2.imshow('src', srcImage)
     a = panelAbstract(srcImage)

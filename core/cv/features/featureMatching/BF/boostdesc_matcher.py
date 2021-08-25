@@ -3,8 +3,8 @@
 import numpy as np
 import cv2 as cv
 
-img1 = cv.imread("/home/linxu/PycharmProjects/CVProcessLib/core/cv/features/featureMatching/box.png")  # queryImage
-img2 = cv.imread("/home/linxu/PycharmProjects/CVProcessLib/core/cv/features/featureMatching/box_in_scene.png")  # trainImage
+img1 = cv.imread("/home/hxzh02/PycharmProjects/cvprocess-lib/core/cv/features/featureMatching/box.png")  # queryImage
+img2 = cv.imread("/home/hxzh02/PycharmProjects/cvprocess-lib/core/cv/features/featureMatching/box_in_scene.png")  # trainImage
 
 # Initiate BRISK detector
 detector = cv.BRISK_create()

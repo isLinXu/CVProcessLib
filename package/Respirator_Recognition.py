@@ -32,15 +32,10 @@ def colorRecognition(img):
     rata_blist = []
     rata_glist = []
     HSV_total = cv2.cvtColor(img2, cv2.COLOR_BGR2HSV)
-    cv2.imwrite('/home/linxu/Documents/HX_Work/武高所实地相关材料/wuhan_coco/image/crop/1_0_0_1030_1_0/trans/hsv1.jpg',HSV_total)
     for i in range(5):
         for j in range(5):
-            # rimg = HSV_total[i * w_2:(i + 1) * w_2, j * h_2:(j + 1) * h_2]
-            # cv2.imshow(str(i * w_2+(i + 1) * w_2+j * h_2+(j + 1) * h_2), rimg)
-            # cv2.imwrite('/home/linxu/Documents/HX_Work/武高所实地相关材料/wuhan_coco/image/crop/1_0_0_1030_1_0/trans/' + str(i * w_2+(i + 1) * w_2+j * h_2+(j + 1) * h_2) + '.png',rimg)
-            # cv2.waitKey()
             HSV_list.append(HSV_total[i * w_2:(i + 1) * w_2, j * h_2:(j + 1) * h_2])
-    i = 0
+
     # 红色掩膜
     for HSV in HSV_list:
         lower_r1 = np.array([0, 46, 43])
@@ -56,10 +51,6 @@ def colorRecognition(img):
         upper_r2_ref = np.array([181, 46, 256])
         mask_r2_ref = cv2.inRange(HSV, lower_r2_ref, upper_r2_ref)
         mask_r = mask_r1 + mask_r2 + mask_r1_ref + mask_r2_ref
-
-        cv2.imshow('mask_r'+str(i), mask_r)
-        cv2.imwrite('/home/linxu/Documents/HX_Work/武高所实地相关材料/wuhan_coco/image/crop/1_0_0_1030_1_0/trans/1crop/' + 'mask_r'+str(i) + '.png',mask_r)
-        cv2.waitKey()
         rata_r = np.sum(mask_r == 255) / total
         rata_rlist.append(rata_r)
 
@@ -95,7 +86,7 @@ def colorRecognition(img):
         mask_g = mask_g1 + mask_g1_ref
         rata_g = np.sum(mask_g == 255) / total
         rata_glist.append(rata_g)
-        i += 1
+
     # 进行颜色区域计数，颜色占比超过50%则判定该区域为该颜色。
     num_r = np.sum(np.array(rata_rlist) > 0.65)
     num_y = np.sum(np.array(rata_ylist) > 0.65)
@@ -122,7 +113,7 @@ def colorRecognition(img):
 
 if __name__ == '__main__':
     # path = '/home/linxu/Documents/Work/sources/呼吸器图片/hx1.png'
-    path = '/home/linxu/PycharmProjects/CVProcessLib/images/呼吸器/1.jpg'
+    path = '/home/hxzh02/PycharmProjects/cvprocess-lib/images/呼吸器/1.jpeg'
     img = cv2.imread(path)
     cv2.imshow('img', img)
     cv2.waitKey()

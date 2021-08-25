@@ -85,7 +85,7 @@ def mouse_event2(event, x, y, flags, param):
         print('mouse rb up')
 
 if __name__ == '__main__':
-    img_src = '/home/hxzh02/桌面/44.jpg'#44
+    img_src = '/home/hxzh02/桌面/217.jpg'#44
     img = cv2.imread(img_src)
     if img is None:
         print('error: 图像为空')

@@ -85,8 +85,8 @@ def dowmloadPicture(html, keyword):
 if __name__ == '__main__':  # 主函数入口
     word = input("请输入搜索关键词(可以是人名，地名等): ")
     # 蛇的百度搜索图\\蛇的品种大全及图片_
-    # url = 'http://image.baidu.com/search/flip?tn=baiduimage&ie=utf-8&word=' + word + '&pn='
-    url='https://image.baidu.com/search/acjson?tn=resultjson_com&ipn=rj&ct=201326592&is=&fp=result&queryWord='+word+'&cl=2&lm=-1&ie=utf-8&oe=utf-8&adpicid=&st=-1&z=&ic=0&hd=&latest=&copyright=&word='+word+'&s=&se=&tab=&width=&height=&face=0&istype=2&qc=&nc=1&fr=&expermode=&force=&cg=girl&rn=30&gsm=&1575687587077=&pn='
+    url = 'http://image.baidu.com/search/flip?tn=baiduimage&ie=utf-8&word=' + word + '&pn='
+    # url='https://image.baidu.com/search/acjson?tn=resultjson_com&ipn=rj&ct=201326592&is=&fp=result&queryWord='+word+'&cl=2&lm=-1&ie=utf-8&oe=utf-8&adpicid=&st=-1&z=&ic=0&hd=&latest=&copyright=&word='+word+'&s=&se=&tab=&width=&height=&face=0&istype=2&qc=&nc=1&fr=&expermode=&force=&cg=girl&rn=30&gsm=&1575687587077=&pn='
     tot=countPic(url)
     Recommend = recommend(url)  # 记录相关推荐
     print('经过检测%s类图片共有%s张' % (word, tot))

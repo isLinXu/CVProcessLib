@@ -23,6 +23,7 @@ def aug(src):
     out = np.zeros(src.shape, src.dtype)
     cv2.normalize(src, out, 255 * 0.1, 255 * 0.9, cv2.NORM_MINMAX)
     return out
+
 def get_lightness(src):
     # 计算亮度
     hsv_image = cv2.cvtColor(src, cv2.COLOR_BGR2HSV)
