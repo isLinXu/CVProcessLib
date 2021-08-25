@@ -42,9 +42,12 @@ def threshold_segmentation(thresh):
 
 if __name__ == '__main__':
     # 载入原图，转化为灰度图像,并通过cv2.resize()等比调整图像大小
-    img_original=cv2.imread('/home/linxu/PycharmProjects/CVProcessLib/images/数显表/1.jpeg')
-    img_original = cv2.cvtColor(img_original, cv2.COLOR_RGB2GRAY)
-    # img_original=cv2.resize(gray,(0,0),fx=0.3,fy=0.3)
+    file_path = '/home/linxu/Desktop/输电杆塔照片素材/输电杆塔照片素材/杆塔倒塌/1.JPG'
+    # file_path = '/home/linxu/PycharmProjects/CVProcessLib/images/数显表/1.jpeg'
+    img_original=cv2.imread(file_path)
+
+    gray = cv2.cvtColor(img_original, cv2.COLOR_RGB2GRAY)
+    img_original=cv2.resize(gray,(0,0),fx=0.1,fy=0.1)
     # 初始化阈值，定义全局变量imgs
     thresh=130
     imgs=0

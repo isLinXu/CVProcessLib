@@ -25,11 +25,11 @@ def saliantMap(image):
 
     return threshMap
 
-
-image = cv2.imread(sys.argv[1])
+file_path = '/home/linxu/Desktop/无人机巡检项目/输电杆塔照片素材/输电杆塔照片素材/杆塔倒塌/3.jpg'
+image = cv2.imread(file_path)
 
 h, w = image.shape[:2]
-image = cv2.resize(image, (int(w/10), int(h/10)))
+image = cv2.resize(image, (int(w*0.2), int(h*0.2)))
 h, w = image.shape[:2]
 mask = saliantMap(image)
 roughOutput = cv2.bitwise_and(image, image, mask=mask)
