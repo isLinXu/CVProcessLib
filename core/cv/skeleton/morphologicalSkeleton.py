@@ -3,15 +3,7 @@ import numpy as np
 import cv2
 import sys
 
-if __name__ == '__main__':
-    im_path = '/home/linxu/PycharmProjects/CVProcessLib/images/呼吸器/1.jpeg'
-    src = cv2.imread(im_path, 0)
-    cv2.imshow('src', src)
-    cv2.waitKey()
-    if src is None:
-        print (im_path, " not exist")
-        sys.exit()
-
+def morphological_Skeleton(src):
     ret, im = cv2.threshold(src, 127, 255, cv2.THRESH_BINARY)
     element = cv2.getStructuringElement(cv2.MORPH_CROSS, (3, 3))
 
@@ -38,5 +30,21 @@ if __name__ == '__main__':
             break
         i += 1
 
+
+    return skel
+
+
+if __name__ == '__main__':
+    im_path = '/home/linxu/Desktop/无人机巡检项目/输电杆塔照片素材/输电杆塔照片素材/杆塔倒塌/1.JPG'
+    # im_path = '/home/linxu/Desktop/1.jpeg'
+    src = cv2.imread(im_path, 0)
+    # src = cv2.resize(src, (0,0), fx=0.1, fy=0.1)
+    cv2.imshow('src', src)
+    cv2.waitKey()
+    if src is None:
+        print (im_path, " not exist")
+        sys.exit()
+
+    skel = morphological_Skeleton(src)
     cv2.imshow('Skeleton', skel)
     cv2.waitKey()
