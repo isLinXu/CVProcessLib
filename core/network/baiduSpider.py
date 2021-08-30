@@ -1,5 +1,11 @@
 #!/usr/bin/env python
 # -*- coding:utf-8 -*-
+'''
+@author: linxu
+@contact: 17746071609@163.com
+@time: 2021-08-25 上午17:00
+@desc: 使用爬虫从百度图片接口进行爬取图片
+'''
 import argparse
 import os
 import re
