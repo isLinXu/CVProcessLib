@@ -97,13 +97,8 @@ def slideColor(frame):
 
 if __name__ == '__main__':
     # file = '/home/linxu/PycharmProjects/LineCheck/image1/158.jpg'
-    # frame = cv2.imread(file)
-    # setTrackbar('blue')
-    # slideColor(frame)
-    # 缺陷检测颜色分割
-    # file_path = '/home/hxzh02/文档/defectDetect/金属锈蚀/1.jpg'
-    file_path = '/home/hxzh02/文档/defectDetect/金属锈蚀(复件)/src/demo/1.jpg'
-    img = cv2.imread(file_path)
-    # img = cv2.resize(img, (0, 0), fx=0.1, fy=0.1, interpolation=cv2.INTER_NEAREST)
-    setTrackbar('red')
-    slideColor(img)
+    file = '/home/linxu/Desktop/输电杆塔照片素材/输电杆塔照片素材/杆塔倒塌/1.JPG'
+    frame = cv2.imread(file)
+    frame = cv2.resize(frame, (0, 0), fx=0.1, fy=0.1)
+    setTrackbar('blue')
+    slideColor(frame)

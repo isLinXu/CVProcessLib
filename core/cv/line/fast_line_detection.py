@@ -45,13 +45,16 @@ def corner(img):
         yha.append(y)
     return xha, yha
 
-file_path = '/home/linxu/Desktop/无人机巡检项目/输电杆塔照片素材/输电杆塔照片素材/杆塔倒塌/6.jpg'
-img = cv2.imread(file_path)
-h, w = img.shape[:2]
-img = cv2.resize(img, (int(w*0.2), int(h*0.2)))
-cv2.imshow('img', img)
 
-xha, yha, img = FLD(img)
-cv2.imshow('fld',img)
-cv2.waitKey()
-# cv2.imwrite('fld.png', img)
+# if __name__ == '__main__':
+#     # file_path = '/home/linxu/Desktop/无人机巡检项目/输电杆塔照片素材/输电杆塔照片素材/电线断线/DJI_0011.JPG'
+#     file_path = '/home/linxu/Desktop/无人机巡检项目/输电杆塔照片素材/输电杆塔照片素材/杆塔倒塌/1.JPG'
+#     img = cv2.imread(file_path)
+#     h, w = img.shape[:2]
+#     img = cv2.resize(img, (int(w*0.2), int(h*0.2)))
+#     cv2.imshow('img', img)
+#
+#     xha, yha, img = FLD(img)
+#     cv2.imshow('fld',img)
+#     cv2.waitKey()
+#     # cv2.imwrite('fld.png', img)

@@ -24,8 +24,9 @@ def removeBackGround():
     MASK_COLOR = (0.0, 0.0, 0.0)
 
     nn = 1
-    file_path = '/home/hxzh02/文档/defectDetect/金属锈蚀(复件)/src/demo/1.jpg'
+    file_path = '/home/linxu/Desktop/无人机巡检项目/输电杆塔照片素材/输电杆塔照片素材/电线断线/引流线断裂.jpg'
     img = cv2.imread(file_path)
+    # img = cv2.resize(img,(0,0),fx=0.1,fy=0.1)
     cv2.imshow('img', img)
     ho, wo = img.shape[:2]
     img = cv2.resize(img, (int(wo * nn), int(ho * nn)))

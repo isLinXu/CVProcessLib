@@ -83,11 +83,12 @@ if __name__ == '__main__':
     # size大小
     size = (200, 200)
     # 设置ID
-    id = 0
-    id_max = 14
+    id = 31
+    id_max = 36
     idx = 1
     # 设置像素大小
     sidePixels = 500
+
     tag = True
 
     if (tag):

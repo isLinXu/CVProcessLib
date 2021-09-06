@@ -49,10 +49,10 @@ while True:
     # 读取摄像头画面
     # 纠正畸变
     newcameramtx, roi = cv2.getOptimalNewCameraMatrix(mtx, dist, (h1, w1), 0, (h1, w1))
-    dst1 = cv2.undistort(frame, mtx, dist, None, newcameramtx)
+    # dst1 = cv2.undistort(frame, mtx, dist, None, newcameramtx)
     x, y, w1, h1 = roi
-    dst1 = dst1[y:y + h1, x:x + w1]
-    frame = dst1
+    # dst1 = dst1[y:y + h1, x:x + w1]
+    # frame = dst1
     # cv2.imshow('frame1', frame)
     # cv2.waitKey()
     gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)

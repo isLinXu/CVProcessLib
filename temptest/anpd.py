@@ -92,8 +92,13 @@ class ANPD:
 
 
 anpd = ANPD()
+file_path = '/home/linxu/Desktop/无人机巡检项目/输电杆塔照片素材/输电杆塔照片素材/杆塔倒塌/5.JPG'
+src = cv2.imread(file_path)
+src = cv2.resize(src, (0,0), fx=0.2, fy=0.2)
+cv2.imshow('src', src)
 
-gray = cv2.imread("anpd_input.jpg", cv2.IMREAD_GRAYSCALE)
+gray = cv2.cvtColor(src, cv2.COLOR_RGB2GRAY)
+
 # gray = cv2.imread("/home/hxzh02/图片/digta.png", cv2.IMREAD_GRAYSCALE)
 candidates = anpd.locate_licence_plate_candidates(gray)
 roi, lpCnt = anpd.locate_license_plate(gray, candidates)

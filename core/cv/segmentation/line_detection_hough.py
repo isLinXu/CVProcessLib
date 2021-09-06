@@ -3,8 +3,13 @@
 import cv2
 import numpy as np
 
-image = cv2.imread("line_detection.png")
+# image = cv2.imread("line_detection.png")
+# file_path = '/home/linxu/Desktop/无人机巡检项目/输电杆塔照片素材/输电杆塔照片素材/福袋（导线风偏、抽股）/导线抽股.JPG'
+file_path = '/home/linxu/Desktop/无人机巡检项目/输电杆塔照片素材/输电杆塔照片素材/杆塔倒塌/1.JPG'
+# file_path = '/home/linxu/Desktop/无人机巡检项目/输电杆塔照片素材/输电杆塔照片素材/福袋（导线风偏、抽股）/导线风偏 (1).JPG'
+image = cv2.imread(file_path)
 # cv2.namedWindow("Input Image", cv2.WINDOW_NORMAL)
+image = cv2.resize(image, (0,0), fx=0.1, fy=0.1)
 cv2.imshow("Input Image", image)
 cv2.waitKey(0)
 
