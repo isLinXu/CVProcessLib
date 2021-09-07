@@ -44,7 +44,12 @@ class Find(object):
             # left = point4[0] - (point1[0] - point4[0]) * 1.5
             # right = point1[0] + (point1[0] - point4[0]) * 1.5
 
-            return img[int(upper):int(lower), int(left):int(right)]
+            out = img[int(upper):int(lower), int(left):int(right)]
+
+            if out.shape[0] > 0 and out.shape[1] > 0:
+                return out
+            else:
+                return None
 
         else:
             return None
@@ -53,6 +58,7 @@ class Find(object):
 if __name__ == '__main__':
 
     import os
+
     images_path = r'/home/hxzh/Wei_Work/Project/Dataset/2021-09-06/'
     images = os.listdir(images_path)
     DFind = Find()
@@ -60,7 +66,7 @@ if __name__ == '__main__':
         image = cv2.imread(os.path.join(images_path, image_name))
         # image = cv2.resize(image, None, fx=0.4, fy=0.4, interpolation=cv2.INTER_CUBIC)
         crop_img = DFind.dlq_location(image, (3, 3))
-        if crop_img is not None and crop_img.shape[0] > 0 and crop_img.shape[1] > 0:
+        if crop_img is not None:
             cv2.imshow('temp', crop_img)
-            cv2.waitKey(100)
+            cv2.waitKey(500)
 
