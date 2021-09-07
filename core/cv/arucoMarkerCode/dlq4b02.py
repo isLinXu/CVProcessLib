@@ -59,8 +59,8 @@ if __name__ == '__main__':
     for image_name in images:
         image = cv2.imread(os.path.join(images_path, image_name))
         # image = cv2.resize(image, None, fx=0.4, fy=0.4, interpolation=cv2.INTER_CUBIC)
-        crop_img = DFind.dlq_location(image)
-        if crop_img is not None:
+        crop_img = DFind.dlq_location(image, (3, 3))
+        if crop_img is not None and crop_img.shape[0] > 0 and crop_img.shape[1] > 0:
             cv2.imshow('temp', crop_img)
             cv2.waitKey(100)
 
