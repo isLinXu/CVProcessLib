@@ -73,25 +73,50 @@ class Find(object):
 
         if dlq_type == 'ABB-SACE-Emax':
 
-            mask = self.hsv_mask(img_right, [[15, 50, 50], [35, 255, 255], [0, 0, 0], [0, 0, 0]], 21)
+            img_blur = cv2.GaussianBlur(img_left, (3, 3), 0)
+            img_gray = cv2.cvtColor(img_blur, cv2.COLOR_RGB2GRAY)
+            circles = cv2.HoughCircles(img_gray, cv2.HOUGH_GRADIENT, 1, 20,
+                                       param1=50, param2=35, minRadius=int(img_left.shape[0] / 9),
+                                       maxRadius=int(img_left.shape[0]))
+            mask_right = self.hsv_mask(img_right, [[15, 50, 50], [35, 255, 255], [0, 0, 0], [0, 0, 0]], 21)
+            if circles is not None:
+                if ((mask_right > 0).sum() + eps) / mask_right.shape[0] / mask_right.shape[1] > state_thresh + eps:
 
-            if ((mask > 0).sum() + eps)/mask.shape[0]/mask.shape[1] > state_thresh + eps:
+                    return [False, True]
 
-                return True, mask
-
+                else:
+                    return [False, False]
             else:
-                return False, mask
+
+                if ((mask_right > 0).sum() + eps) / mask_right.shape[0] / mask_right.shape[1] > state_thresh + eps:
+
+                    return [True, True]
+
+                else:
+                    return [True, False]
 
         elif dlq_type == 'ABB-SACE-Emax-X1':
 
-            mask = self.hsv_mask(img_right, [[170, 50, 50], [180, 255, 255], [0, 50, 50], [10, 255, 255]], 21)
+            mask_left = self.hsv_mask(img_left, [[15, 50, 50], [35, 255, 255], [0, 0, 0], [0, 0, 0]], 21)
 
-            if ((mask > 0).sum() + eps)/mask.shape[0]/mask.shape[1] > state_thresh + eps:
+            mask_right = self.hsv_mask(img_right, [[170, 50, 50], [180, 255, 255], [0, 50, 50], [10, 255, 255]], 21)
 
-                return True, mask
+            if ((mask_left > 0).sum() + eps)/mask_left.shape[0]/mask_left.shape[1] > state_thresh + eps:
+
+                if ((mask_right > 0).sum() + eps)/mask_right.shape[0]/mask_right.shape[1] > state_thresh + eps:
+
+                    return [True, True]
+
+                else:
+                    return [False, True]
 
             else:
-                return False, mask
+                if ((mask_right > 0).sum() + eps) / mask_right.shape[0] / mask_right.shape[1] > state_thresh + eps:
+
+                    return [True, False]
+
+                else:
+                    return [False, False]
 
         else:
 
@@ -119,18 +144,26 @@ if __name__ == '__main__':
 
     images_path = r'/home/hxzh/Wei_Work/Project/Dataset/2021-09-06/'
     dlq_type = 'ABB-SACE-Emax'
+    Emax_ks = (31, 31)
+    Emax_X1_ks = (11, 11)
+    if dlq_type == 'ABB-SACE-Emax-X1':
+        ks = Emax_X1_ks
+    else:
+        ks = Emax_ks
     images = os.listdir(images_path)
     DFind = Find(is_save=True, save_path='./crop/')
     for i, image_name in enumerate(images):
         image = cv2.imread(os.path.join(images_path, image_name))
         # image = cv2.resize(image, None, fx=0.4, fy=0.4, interpolation=cv2.INTER_CUBIC)
-        crop_img = DFind.dlq_crop(image, (31, 31), image_name, dlq_type)
+        crop_img = DFind.dlq_crop(image, ks, image_name, dlq_type)        # 31 11
         if crop_img is not None:
-            temp_state, m = DFind.dlq_state(crop_img, dlq_type)
-            cv2.imshow('temp', crop_img)
+            temp_state = DFind.dlq_state(crop_img, dlq_type)
+            image = cv2.putText(image, "({},{})".format(temp_state[0], temp_state[1]), (100, 100),
+                                cv2.FONT_HERSHEY_SIMPLEX, 3.0, (0, 255, 0), 5)
+            image = cv2.resize(image, None, fx=0.25, fy=0.25, interpolation=cv2.INTER_CUBIC)
+            cv2.imshow('temp', image)
             print(image_name, 'state:', temp_state)
             cv2.waitKey(5000)
-
         else:
             print(image_name)
 
