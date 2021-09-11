@@ -53,4 +53,19 @@ if __name__ == '__main__':
 
 
 
-
+    # path = '/home/hxzh02/文档/defectDetect/金属锈蚀(复件)/src/'
+    # for root, dirs, files in os.walk(path):
+    #     for name in files:
+    #         if len(dirs) != 0:
+    #             fname = os.path.join(root, name)
+    #             print('fname', fname)
+    #             print('root', root)
+    #             print('name', name)
+    #             img = cv2.imread(fname)
+    #             cv2.imshow('img',img)
+    #             print(img.shape)
+    #             # 颜色分割
+    #             th = color_cut(img)
+    #             cv2.imshow('th', th)
+    #             # cv2.imwrite(root + 'demo/dst/' + 'dst_1' + name, th)
+    #             # cv2.waitKey()
