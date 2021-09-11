@@ -1,7 +1,10 @@
+"""
+该版本由于图片获取方式不统一，增加了一些不必要的判断
+"""
 import numpy as np
 import cv2
 import cv2.aruco as aruco
-
+import os
 
 class Find(object):
 
@@ -69,33 +72,88 @@ class Find(object):
 
     def dlq_state(self, img, dlq_type=None, state_thresh=0.0, eps=1e-7):
 
-        img_left, img_right = img[:, :int(img.shape[1]*0.5)], img[:, int(img.shape[1]*0.5):]
+        img_left = img[0:img.shape[0], 0:int(img.shape[1]*0.5)]
+        img_right = img[:, int(img.shape[1]*0.5):]
 
         if dlq_type == 'ABB-SACE-Emax':
 
-            mask = self.hsv_mask(img_right, [[15, 50, 50], [35, 255, 255], [0, 0, 0], [0, 0, 0]], 21)
+            img_blur = cv2.GaussianBlur(img_left, (7, 7), 0)
+            img_gray = cv2.cvtColor(img_blur, cv2.COLOR_RGB2GRAY)
+            circles = cv2.HoughCircles(img_gray, cv2.HOUGH_GRADIENT, 1, 20,
+                                       param1=50, param2=35, minRadius=int(img_left.shape[0] / 9),
+                                       maxRadius=int(img_left.shape[0]))
+            if circles is not None:
+                # print(img_name)
+                circles = np.uint16(np.around(circles))
+                for i in circles[0, :]:
+                    # 画出来圆的边界
+                    cv2.circle(img, (i[0], i[1]), i[2], (0, 255, 0), 2)
+                    # 画出来圆心
+                    cv2.circle(img, (i[0], i[1]), 2, (0, 0, 255), 1)
+            cv2.imshow('1', img)
+            cv2.waitKeyEx(0)
+            cv2.destroyAllWindows()
 
-            if ((mask > 0).sum() + eps)/mask.shape[0]/mask.shape[1] > state_thresh + eps:
+            mask_right = self.hsv_mask(img_right, [[15, 50, 50], [35, 255, 255], [0, 0, 0], [0, 0, 0]], 21)
+            if circles is not None:
+                if ((mask_right > 0).sum() + eps) / mask_right.shape[0] / mask_right.shape[1] > state_thresh + eps:
 
-                return True, mask
+                    return [False, True]
 
+                else:
+                    return [False, False]
             else:
-                return False, mask
+
+                if ((mask_right > 0).sum() + eps) / mask_right.shape[0] / mask_right.shape[1] > state_thresh + eps:
+
+                    return [True, True]
+
+                else:
+                    return [True, False]
 
         elif dlq_type == 'ABB-SACE-Emax-X1':
+            img = img[:, int(img.shape[1] / 2):int(img.shape[1])]
+            img_blur = cv2.GaussianBlur(img, (7, 7), 0)
+            cv2.imshow('1', img_blur)
+            cv2.waitKeyEx(0)
+            cv2.destroyAllWindows()
+            img_gray = cv2.cvtColor(img_blur, cv2.COLOR_RGB2GRAY)
 
-            mask = self.hsv_mask(img_right, [[170, 50, 50], [180, 255, 255], [0, 50, 50], [10, 255, 255]], 21)
+            circles = cv2.HoughCircles(img_gray, cv2.HOUGH_GRADIENT, 1, 20,
+                                       param1=50, param2=35, minRadius=0,
+                                       maxRadius=0)
 
-            if ((mask > 0).sum() + eps)/mask.shape[0]/mask.shape[1] > state_thresh + eps:
+            if circles is not None:
+                # print(img_name)
+                circles = np.uint16(np.around(circles))
+                for i in circles[0, :]:
+                    # 画出来圆的边界
+                    cv2.circle(img, (i[0], i[1]), i[2], (0, 255, 0), 2)
+                    # 画出来圆心
+                    cv2.circle(img, (i[0], i[1]), 2, (0, 0, 255), 1)
+                    #print(img_name, 'off')
+            cv2.imshow('1', img)
+            cv2.waitKeyEx(0)
+            cv2.destroyAllWindows()
 
-                return True, mask
+            mask_left = self.hsv_mask(img_left, [[15, 50, 50], [35, 255, 255], [0, 0, 0], [0, 0, 0]], 21)
 
+            if circles is not None:
+                if ((mask_left > 0).sum() + eps) / mask_left.shape[0] / mask_left.shape[1] > state_thresh + eps:
+
+                    return [False, True]
+
+                else:
+                    return [False, False]
             else:
-                return False, mask
 
-        else:
+                if ((mask_left > 0).sum() + eps) / mask_left.shape[0] / mask_left.shape[1] > state_thresh + eps:
 
-            return None
+                    return [True, True]
+
+                else:
+                    return [True, False]
+
 
     def hsv_mask(self, img, h_range_list, ks):
 
@@ -115,22 +173,35 @@ class Find(object):
 
 if __name__ == '__main__':
 
-    import os
+    images_path = r'data_2'
+    dlq_type = 'ABB-SACE-Emax-X1'
+    Emax_ks = (31, 31)
+    Emax_X1_ks = (17, 17)
 
-    images_path = r'/home/hxzh/Wei_Work/Project/Dataset/2021-09-06/'
-    dlq_type = 'ABB-SACE-Emax'
+    if dlq_type == 'ABB-SACE-Emax-X1':
+        ks = Emax_X1_ks
+    elif dlq_type == 'ABB-SACE-Emax':
+        ks = Emax_ks
+
     images = os.listdir(images_path)
     DFind = Find(is_save=True, save_path='./crop/')
+
     for i, image_name in enumerate(images):
         image = cv2.imread(os.path.join(images_path, image_name))
-        # image = cv2.resize(image, None, fx=0.4, fy=0.4, interpolation=cv2.INTER_CUBIC)
-        crop_img = DFind.dlq_crop(image, (31, 31), image_name, dlq_type)
+        crop_img = DFind.dlq_crop(image, ks, image_name, dlq_type)  # 31 11
         if crop_img is not None:
-            temp_state, m = DFind.dlq_state(crop_img, dlq_type)
-            cv2.imshow('temp', crop_img)
+
+            temp_state = DFind.dlq_state(crop_img, dlq_type)
+
+            image = cv2.putText(image, "({},{})".format(temp_state[0], temp_state[1]), (100, 100),
+                                cv2.FONT_HERSHEY_SIMPLEX, 3.0, (0, 255, 0), 5)
+
+            image = cv2.resize(image, None, fx=0.25, fy=0.25, interpolation=cv2.INTER_CUBIC)
+
+            cv2.imshow('temp', image)
             print(image_name, 'state:', temp_state)
-            cv2.waitKey(5000)
+            cv2.waitKey()
+            cv2.destroyAllWindows()
 
         else:
             print(image_name)
-
