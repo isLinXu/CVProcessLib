@@ -97,8 +97,8 @@ def slideColor(frame):
 
 if __name__ == '__main__':
     # file = '/home/linxu/PycharmProjects/LineCheck/image1/158.jpg'
-    file = '/home/hxzh/indoor_breaker/data_g/00000.jpg.jpg'
+    file = '/home/hxzh/Wei_Work/Project/Chopper/yolov5_Dlq/crop/1.jpg'
     frame = cv2.imread(file)
     # frame = cv2.resize(frame, (0, 0), fx=0.1, fy=0.1)
-    setTrackbar('blue')
+    setTrackbar('red')
     slideColor(frame)
