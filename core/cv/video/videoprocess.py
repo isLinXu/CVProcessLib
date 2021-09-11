@@ -12,7 +12,7 @@ def save_from_video(file_path, save_path):
     video_path = os.path.join(file_path)
     times = 0
     # 提取视频的频率，每1帧提取一个
-    frameFrequency = 1
+    frameFrequency = 30
     # 输出图片到当前目录文件夹下
     outPutDirName = save_path
     if not os.path.exists(outPutDirName):
@@ -34,8 +34,6 @@ def save_from_video(file_path, save_path):
 if __name__ == '__main__':
     # file_path = '/home/linxu/Documents/Work/sources/交通灯识别（重视红绿灯）/交通灯识别（重视红绿灯）/红绿灯最终测试视频.mp4'
     # file_path = '/home/linxu/Documents/Work/sources/交通灯识别（重视红绿灯）/交通灯识别（重视红绿灯）/test3.avi'
-    # file_path = '/home/linxu/PycharmProjects/LineCheck/test5.avi'
-    file_path = '/home/linxu/Downloads/2017输电线路无人机巡检视频.mp4'
-    save_path = '/home/linxu/Downloads/2017输电线路无人机巡检视频/'
-    # save_path = '/home/linxu/PycharmProjects/LineCheck/'
+    file_path = '/home/hxzh02/文档/【原创】4K·高压电线铁塔.mp4'
+    save_path = '/home/hxzh02/文档/【原创】4K·高压电线铁塔/'
     save_from_video(file_path,save_path)

@@ -68,6 +68,8 @@ def hasBlackAround(x, y, distance, img, thr=200):
 if __name__ == '__main__':
     from PIL import Image
     debug = False
-    image_path = "gf-png/gf1.png"
+    image_path = "/home/hxzh02/文档/航拍数据集/m6240.jpg"
     img = Image.open(image_path)
-    res_img = remove_watermark(img, thr=100, distance=1)
+    res_img = bak_remove_watermark(img, thr=100, distance=1)
+    cv2.imshow('res_img',res_img)
+    cv2.waitKey()

@@ -35,8 +35,9 @@ def morphological_Skeleton(src):
 
 
 if __name__ == '__main__':
-    im_path = '/home/linxu/Desktop/无人机巡检项目/输电杆塔照片素材/输电杆塔照片素材/杆塔倒塌/1.JPG'
+    # im_path = '/home/linxu/Desktop/无人机巡检项目/输电杆塔照片素材/输电杆塔照片素材/杆塔倒塌/1.JPG'
     # im_path = '/home/linxu/Desktop/1.jpeg'
+    im_path = '/home/hxzh02/文档/无人机数据集整理/杆塔图片汇总/data/img/1.jpg'
     src = cv2.imread(im_path, 0)
     # src = cv2.resize(src, (0,0), fx=0.1, fy=0.1)
     cv2.imshow('src', src)
