@@ -81,14 +81,16 @@ class Crawler:
                 obj_url = image_info['replaceUrl'][0]['ObjUrl']
                 thumb_url = image_info['thumbURL']
                 # 设置爬虫下载源
-                url = 'https://image.baidu.com/search/down?tn=download&ipn=dwnl&word=download&ie=utf8&fr=result&url=%s&thumburl=%s' % (urllib.parse.quote(obj_url), urllib.parse.quote(thumb_url))
+                url = 'https://image.baidu.com/search/down?tn=download&ipn=dwnl&word=download&ie=utf8&fr=result&url=%s&thumburl=%s' % (
+                urllib.parse.quote(obj_url), urllib.parse.quote(thumb_url))
                 # url = 'https://www.google.com.hk/imghp?newwindow=1&sxsrf=ALeKk03Jysd3OVyb26J8n1WSa1dwEx4LMw:1629881189502&source=lnms&tbm=isch&sa=X&ved=2ahUKEwjNxs3K5MvyAhUayGEKHT9VAo0Q_AUoA3oECAEQBQ&biw=1920&bih=884'  % (urllib.parse.quote(obj_url), urllib.parse.quote(thumb_url))
                 time.sleep(self.time_sleep)
                 suffix = self.get_suffix(obj_url)
                 # 指定UA和referrer，减少403
                 opener = urllib.request.build_opener()
                 opener.addheaders = [
-                    ('User-agent', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.116 Safari/537.36'),
+                    ('User-agent',
+                     'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.116 Safari/537.36'),
                 ]
                 urllib.request.install_opener(opener)
                 # 保存图片
@@ -123,13 +125,15 @@ class Crawler:
         pn = self.__start_amount
         while pn < self.__amount:
             # 设置爬虫下载源
-            url = 'https://image.baidu.com/search/acjson?tn=resultjson_com&ipn=rj&ct=201326592&is=&fp=result&queryWord=%s&cl=2&lm=-1&ie=utf-8&oe=utf-8&adpicid=&st=-1&z=&ic=&hd=&latest=&copyright=&word=%s&s=&se=&tab=&width=&height=&face=0&istype=2&qc=&nc=1&fr=&expermode=&force=&pn=%s&rn=%d&gsm=1e&1594447993172=' % (search, search, str(pn), self.__per_page)
+            url = 'https://image.baidu.com/search/acjson?tn=resultjson_com&ipn=rj&ct=201326592&is=&fp=result&queryWord=%s&cl=2&lm=-1&ie=utf-8&oe=utf-8&adpicid=&st=-1&z=&ic=&hd=&latest=&copyright=&word=%s&s=&se=&tab=&width=&height=&face=0&istype=2&qc=&nc=1&fr=&expermode=&force=&pn=%s&rn=%d&gsm=1e&1594447993172=' % (
+            search, search, str(pn), self.__per_page)
             # 设置header防403
             try:
                 time.sleep(self.time_sleep)
                 req = urllib.request.Request(url=url, headers=self.headers)
                 page = urllib.request.urlopen(req)
-                self.headers['Cookie'] = self.handle_baidu_cookie(self.headers['Cookie'], page.info().get_all('Set-Cookie'))
+                self.headers['Cookie'] = self.handle_baidu_cookie(self.headers['Cookie'],
+                                                                  page.info().get_all('Set-Cookie'))
                 rsp = page.read()
                 page.close()
             except UnicodeDecodeError as e:
@@ -153,7 +157,6 @@ class Crawler:
                     pn += self.__per_page
         print("下载任务结束")
         return
-
 
     def start(self, word, total_page=1, start_page=1, per_page=30):
         """
@@ -179,7 +182,8 @@ if __name__ == '__main__':
         parser.add_argument("-w", "--word", type=str, help="抓取关键词", required=True)
         parser.add_argument("-tp", "--total_page", type=int, help="需要抓取的总页数", required=True)
         parser.add_argument("-sp", "--start_page", type=int, help="起始页数", required=True)
-        parser.add_argument("-pp", "--per_page", type=int, help="每页大小", choices=[10, 20, 30, 40, 50, 60, 70, 80, 90, 100], default=30, nargs='?')
+        parser.add_argument("-pp", "--per_page", type=int, help="每页大小",
+                            choices=[10, 20, 30, 40, 50, 60, 70, 80, 90, 100], default=30, nargs='?')
         parser.add_argument("-d", "--delay", type=float, help="抓取延时（间隔）", default=0.05)
         args = parser.parse_args()
 
@@ -190,7 +194,7 @@ if __name__ == '__main__':
         # 如果不指定参数，那么程序会按照下面进行执行
         # 默认设置抓取延迟为 0.05
         crawler = Crawler(0.05)
-        arguments = {'word':'输电塔', 'total_page':10, 'start_page':1, 'per_page':30}
+        arguments = {'word': '陶瓷绝缘子', 'total_page': 100, 'start_page': 1, 'per_page': 100}
         word = arguments['word']
         # crawler.start('输电塔', 5)
         crawler.start(arguments['word'], arguments['total_page'], arguments['start_page'], arguments['per_page'])

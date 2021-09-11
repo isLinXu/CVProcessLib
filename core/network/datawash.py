@@ -203,10 +203,10 @@ if __name__ == '__main__':
     # path = '/home/hxzh02/文档/PlanetDataset/src/官帽塔'
     # path = '/home/hxzh02/文档/PlanetDataset/src/酒杯塔'
 
-    # path = '/home/hxzh02/文档/PlanetDataset/src/电网铁塔'
-    # dataWash_1(path)
+    path = '/home/hxzh02/文档/PlanetDataset/src/电网铁塔'
+    dataWash_1(path)
     # images_Normalization(path)
 
     # path = '/home/hxzh02/桌面/杆塔倒塌-负样本/'
-    path = '/home/hxzh02/桌面/杆塔图片汇总/'
-    images_Normalization(path, False)
+    # path = '/home/hxzh02/桌面/杆塔图片汇总/'
+    # images_Normalization(path, False)
