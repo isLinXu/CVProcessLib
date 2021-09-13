@@ -33,15 +33,10 @@ class Find(object):
 
         if ids is not None and len(corners) != 0:
 
-            point1 = (corners[0][0][0][0], corners[0][0][0][1])
-            point2 = (corners[0][0][1][0], corners[0][0][1][1])
-            point3 = (corners[0][0][2][0], corners[0][0][2][1])
-            point4 = (corners[0][0][3][0], corners[0][0][3][1])
-
-            x_min = min(point1[0], min(point2[0], min(point3[0], point4[0])))
-            y_min = min(point1[1], min(point2[1], min(point3[1], point4[1])))
-            x_max = max(point1[0], max(point2[0], max(point3[0], point4[0])))
-            y_max = max(point1[1], max(point2[1], max(point3[1], point4[1])))
+            x_min = corners[0][0, :, 0].min()
+            y_min = corners[0][0, :, 1].min()
+            x_max = corners[0][0, :, 0].max()
+            y_max = corners[0][0, :, 1].max()
 
             if dlq_type == 'ABB-SACE-Emax':
                 lower = y_min
