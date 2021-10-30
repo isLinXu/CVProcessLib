@@ -57,6 +57,17 @@ def createDogJoints():
 
 
 def designJoints(botCenterToFront, botWidthfmCenter, xoffh, yoffh, botCenterToBack, upperLegLength, lowerLegLength):
+    '''
+    关节设计
+    :param botCenterToFront:
+    :param botWidthfmCenter:
+    :param xoffh:
+    :param yoffh:
+    :param botCenterToBack:
+    :param upperLegLength:
+    :param lowerLegLength:
+    :return:
+    '''
     linkPositions = [[botCenterToFront, botWidthfmCenter, 0], [xoffh, yoffh, 0], [0, 0, -upperLegLength],
                      [0, 0, -lowerLegLength],
                      [botCenterToFront, -botWidthfmCenter, 0], [xoffh, -yoffh, 0], [0, 0, -upperLegLength],
@@ -94,8 +105,16 @@ def designJoints(botCenterToFront, botWidthfmCenter, xoffh, yoffh, botCenterToBa
 # Function to calculate roll, hip and knee angles from the x,y,z coords of the foot wrt the hip.
 ## inverse kinematics
 def xyztoang(x, y, z, yoffh, upperLegLength, lowerLegLength):
-    '''逆运动学
+    '''
+    逆运动学
     用于从脚相对于臀部的x、y、z坐标计算横滚、髋关节和膝关节角度。
+    :param x:
+    :param y:
+    :param z:
+    :param yoffh:
+    :param upperLegLength:
+    :param lowerLegLength:
+    :return:
     '''
     dyz = np.sqrt(y ** 2 + z ** 2)
     lyz = np.sqrt(dyz ** 2 - yoffh ** 2)
@@ -118,13 +137,30 @@ def RotYawr(theta):
     '''
     仅在机器人框架和世界框架之间的偏航旋转矩阵
     计算：[cos(t),-sin(t),0,][sin(t),cos((t)),0][0,0,1]
+    :param theta:
+    :return:
     '''
     Rhor = np.array([[np.cos(theta), -np.sin(theta), 0], [np.sin(theta), np.cos(theta), 0], [0, 0, 1]])
     return Rhor
 
-# 设置腿部axis
+
 def setlegsxyz(xvec, yvec, zvec, eachMotorSpeed, botCenterToFront, botWidthfmCenter, yoffh, upperLegLength,
                lowerLegLength, dog, botCenterToBack):
+    '''
+    设置腿部axis
+    :param xvec:
+    :param yvec:
+    :param zvec:
+    :param eachMotorSpeed:
+    :param botCenterToFront:
+    :param botWidthfmCenter:
+    :param yoffh:
+    :param upperLegLength:
+    :param lowerLegLength:
+    :param dog:
+    :param botCenterToBack:
+    :return:
+    '''
     a = xyztoang(xvec[0] - botCenterToFront, yvec[0] - botWidthfmCenter, zvec[0], yoffh, upperLegLength,
                  lowerLegLength)  # (x,y,z,yoffh,upperLegLength,lowerLegLength)
     spd = 1
@@ -176,7 +212,18 @@ def setlegsxyz(xvec, yvec, zvec, eachMotorSpeed, botCenterToFront, botWidthfmCen
 
 def dogBody(base_body, basePosition, baseOrientation, linkCollisionShapeIndices, linkPositions, indices, jointTypes,
             axis):
-    ''''''
+    '''
+    机器狗的主体
+    :param base_body:
+    :param basePosition:
+    :param baseOrientation:
+    :param linkCollisionShapeIndices:
+    :param linkPositions:
+    :param indices:
+    :param jointTypes:
+    :param axis:
+    :return:
+    '''
     body_Mass = 1  ## assumption 1... we see that at 100 at carries well to certain distance. but ultimately falls
     visualShapeId = -1
     link_Masses = [.1, .1, .1, .1,  # roll to hip to knee to foot
@@ -206,7 +253,12 @@ def dogBody(base_body, basePosition, baseOrientation, linkCollisionShapeIndices,
 
 
 def initialBalance(dog, joint):
-    '''初始化平衡'''
+    '''
+    初始化平衡主体与关节
+    :param dog:
+    :param joint:
+    :return:
+    '''
     p.setJointMotorControl2(dog, joint, p.POSITION_CONTROL, targetPosition=0.01, force=1000, maxVelocity=3)
     # Same for the prismatic feet spheres
     joint = 3
