@@ -136,23 +136,32 @@ def cmpHash(hash1, hash2):
     return n
 
 if __name__ == '__main__':
-    img1 = cv2.imread('/home/linxu/Desktop/t1.png')
-    img2 = cv2.imread('/home/linxu/Desktop/t3.png')
+    img1 = cv2.imread('/home/linxu/Desktop/桌面临时文件/t1.png')
+    img2 = cv2.imread('/home/linxu/Desktop/桌面临时文件/t2.png')
 
     hash1 = aHash(img1)
     hash2 = aHash(img2)
-    n = cmpHash(hash1, hash2)
-    print('均值哈希算法相似度：', n)
+    n1 = cmpHash(hash1, hash2)
+    print('均值哈希算法相似度：', n1)
 
     hash1 = dHash(img1)
     hash2 = dHash(img2)
-    n = cmpHash(hash1, hash2)
-    print('差值哈希算法相似度：', n)
+    n2 = cmpHash(hash1, hash2)
+    print('差值哈希算法相似度：', n2)
 
     hash1 = pHash(img1)
     hash2 = pHash(img2)
-    n = cmpHash(hash1, hash2)
-    print('感知哈希算法相似度：', n)
+    n3 = cmpHash(hash1, hash2)
+    print('感知哈希算法相似度：', n3)
 
     n = classify_hist_with_split(img1, img2)
     print('三直方图算法相似度：', n)
+
+
+    cv2.putText(img1, str([n1, n2, n3]), (0, 40), cv2.FONT_HERSHEY_COMPLEX, 1, (0, 0, 255), 1)
+    cv2.putText(img2, str([n1, n2, n3]), (0, 40), cv2.FONT_HERSHEY_COMPLEX, 1, (0, 0, 255), 1)
+    cv2.imshow('img1', img1)
+    cv2.imshow('img2', img2)
+    # cv2.imwrite('/home/linxu/Desktop/桌面临时文件/t1_score.png',img1)
+    # cv2.imwrite('/home/linxu/Desktop/桌面临时文件/t2_score.png', img2)
+    cv2.waitKey()
