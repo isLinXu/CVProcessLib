@@ -126,7 +126,8 @@ def line_detect_possible_demo(image):  # 检测出可能的线段
 
 
 if __name__ == '__main__':
-    path = '/home/linxu/Documents/Work/sources/textDetect_project/cut_out/1/image_720.jpg'
+    path = '/home/hxzh02/文档/plane-project_beijing/lib4mod/towercable/output/导线抽股.png'
+    # path = '/home/linxu/Documents/Work/sources/textDetect_project/cut_out/1/image_720.jpg'
     # path = '/home/linxu/Documents/Work/sources/textDetect_project/cut_out/5/image_60.jpg'
     # path = '/home/linxu/Documents/Work/sources/textDetect_project/cut_out/4/image_960.jpg'
 

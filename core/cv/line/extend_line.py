@@ -2,6 +2,16 @@ import cv2
 import numpy as np
 
 def Extend_line(x1, y1, x2, y2, x, y, flag):
+    '''
+    :param x1:
+    :param y1:
+    :param x2:
+    :param y2:
+    :param x:
+    :param y:
+    :param flag:
+    :return:
+    '''
     if flag == 1:
         if y1 == y2:
             return 0, y1, x, y2
