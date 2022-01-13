@@ -41,9 +41,11 @@ colors = Colors()  # create instance for 'from utils.plots import colors'
 
 
 def show_label_from_image(xml_path, jpg_path, root_path):
+    # 根据路径获取图片列表
     xmlfilelist = os.listdir(xml_path)
     jpgfilelist = os.listdir(jpg_path)
 
+    # 对文件列表名称进行排序
     jpgfilelist.sort(reverse=False)
     xmlfilelist.sort(reverse=False)
     print(len(jpgfilelist))
