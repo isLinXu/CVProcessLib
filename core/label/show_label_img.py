@@ -15,6 +15,8 @@ from xml.dom import minidom
 import cv2
 import os
 
+from tqdm import tqdm
+
 
 class Colors:
     # Ultralytics color palette https://ultralytics.com/
@@ -51,7 +53,7 @@ def show_label_from_image(xml_path, jpg_path, root_path):
     print(len(jpgfilelist))
     print('xml_list', xmlfilelist)
     print('jpg_list', jpgfilelist)
-    for i in range(0, len(xmlfilelist)):
+    for i in tqdm(range(0, len(xmlfilelist))):
         # 读取文件名
         xmlfilename = os.path.splitext(xmlfilelist[i])[0]
         jpgfilename = os.path.splitext(jpgfilelist[i])[0]
