@@ -42,7 +42,7 @@ class Colors:
 colors = Colors()  # create instance for 'from utils.plots import colors'
 
 
-def show_label_from_image(xml_path, jpg_path, root_path):
+def show_label_from_image(xml_path, jpg_path, root_path,is_show=False):
     # 根据路径获取图片列表
     xmlfilelist = os.listdir(xml_path)
     jpgfilelist = os.listdir(jpg_path)
@@ -110,14 +110,16 @@ def show_label_from_image(xml_path, jpg_path, root_path):
 
                 thickness = 2
 
-                # 将bbox的参数以rectangle的形式画在图上
+                # 将bbox的参数以rectangle的形式画在原图上
                 cv2.rectangle(img, start_point, end_point, (0, 255, 0), thickness)
-
+                # xml中的标签名称以Text的形式画在原图上
                 image = cv2.putText(img, label_name, org, font, fontscale, color, thickness, cv2.LINE_AA)
-                cv2.imshow("img", image)
+
                 # 保存结果
                 cv2.imwrite(root_path + "output/" + jpgfilename + '.jpg', img)
-                cv2.waitKey()
+                if is_show:
+                    cv2.imshow("img", image)
+                    cv2.waitKey()
 
 
 if __name__ == '__main__':
@@ -131,4 +133,5 @@ if __name__ == '__main__':
     xml_path = "/media/hxzh02/SB@home/hxzh/Dataset/Plane_detect_datasets/VOCdevkit_lineextract_detect/VOC2007/Annotations/"  # windows系统用双斜线
     jpg_path = '/media/hxzh02/SB@home/hxzh/Dataset/Plane_detect_datasets/VOCdevkit_lineextract_detect/VOC2007/JPEGImages/'
     root_path = '/media/hxzh02/SB@home/hxzh/Dataset/Plane_detect_datasets/VOCdevkit_lineextract_detect/VOC2007/'
-    show_label_from_image(xml_path=xml_path, jpg_path=jpg_path, root_path=root_path)
+    is_show = False
+    show_label_from_image(xml_path=xml_path, jpg_path=jpg_path, root_path=root_path,is_show=is_show)
