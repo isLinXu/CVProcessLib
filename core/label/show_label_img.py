@@ -42,7 +42,15 @@ class Colors:
 colors = Colors()  # create instance for 'from utils.plots import colors'
 
 
-def show_label_from_image(xml_path, jpg_path, root_path,is_show=False):
+def show_label_from_images(xml_path, jpg_path, root_path,is_show=False):
+    '''
+    将xm
+    :param xml_path:
+    :param jpg_path:
+    :param root_path:
+    :param is_show:
+    :return:
+    '''
     # 根据路径获取图片列表
     xmlfilelist = os.listdir(xml_path)
     jpgfilelist = os.listdir(jpg_path)
@@ -130,8 +138,11 @@ if __name__ == '__main__':
     |--root/Annotations
     |--root/JPEGImages
     '''
-    xml_path = "/media/hxzh02/SB@home/hxzh/Dataset/Plane_detect_datasets/VOCdevkit_lineextract_detect/VOC2007/Annotations/"  # windows系统用双斜线
-    jpg_path = '/media/hxzh02/SB@home/hxzh/Dataset/Plane_detect_datasets/VOCdevkit_lineextract_detect/VOC2007/JPEGImages/'
-    root_path = '/media/hxzh02/SB@home/hxzh/Dataset/Plane_detect_datasets/VOCdevkit_lineextract_detect/VOC2007/'
-    is_show = False
-    show_label_from_image(xml_path=xml_path, jpg_path=jpg_path, root_path=root_path,is_show=is_show)
+    # xml_path = "/media/hxzh02/SB@home/hxzh/Dataset/Plane_detect_datasets/VOCdevkit_lineextract_detect/VOC2007/Annotations/"  # windows系统用双斜线
+    # jpg_path = '/media/hxzh02/SB@home/hxzh/Dataset/Plane_detect_datasets/VOCdevkit_lineextract_detect/VOC2007/JPEGImages/'
+    # root_path = '/media/hxzh02/SB@home/hxzh/Dataset/Plane_detect_datasets/VOCdevkit_lineextract_detect/VOC2007/'
+    # is_show = True
+    # show_label_from_images(xml_path=xml_path, jpg_path=jpg_path, root_path=root_path,is_show=is_show)
+
+
+
