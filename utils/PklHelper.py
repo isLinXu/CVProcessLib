@@ -7,6 +7,12 @@
 @ Software: PyCharm
 @ File: PklHelper.py
 @ Desc: .pkl格式相关支持函数
+
+什么是pkl文件：
+1）python中有一种存储方式，可以存储为.pkl文件。
+2）该存储方式，可以将python项目过程中用到的一些暂时变量、或者需要提取、暂存的字符串、列表、字典等数据保存起来。
+3）保存方式就是保存到创建的.pkl文件里面。
+4）然后需要使用的时候再 open，load。
 """
 import pickle
 import numpy as np
