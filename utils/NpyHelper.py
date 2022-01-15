@@ -1,3 +1,13 @@
+# -*- coding:utf-8 -*-
+
+"""
+@ Author: LinXu
+@ Contact: 17746071609@163.com
+@ Date: 2022/01/15 15:35 PM
+@ Software: PyCharm
+@ File: NpyHelper.py
+@ Desc: .npy格式相关支持函数
+"""
 
 import os
 import numpy as np
