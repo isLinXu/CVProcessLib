@@ -27,9 +27,11 @@ def read_npyfile(npy_path):
     return arr
 
 if __name__ == '__main__':
-    file_dir = '/media/hxzh02/SB@home/hxzh/Dataset/Plane_detect_datasets/VOCdevkit_lineextract_detect/VOC2007/Annotations/'  # 文件夹的路径
+    # 文件夹的路径
+    # file_dir = '/media/hxzh02/SB@home/hxzh/Dataset/Plane_detect_datasets/VOCdevkit_lineextract_detect/VOC2007/Annotations/'
+    file_dir = '/media/hxzh02/SB@home/hxzh/Dataset/Plane_detect_datasets/VOCdevkit_windbias_detect/VOC2007/Annotations/'
     npy_name = 'xml'
     readFiledir_saveNpy(file_dir,npy_name)
 
-    npy_path = 'xml.npy'
-    read_npyfile(npy_path)
+    # npy_path = 'xml.npy'
+    # read_npyfile(npy_path)
