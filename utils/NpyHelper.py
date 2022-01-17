@@ -17,12 +17,14 @@ def readFiledir_saveNpy(file_dir, npy_name):
     print(a)
     save_path = npy_name + '.npy'
     np.save(save_path, a)
+    return save_path
 
 
 def read_npyfile(npy_path):
     # 读取.npy文件
     arr = np.load(npy_path)
     print(arr)
+    return arr
 
 if __name__ == '__main__':
     file_dir = '/media/hxzh02/SB@home/hxzh/Dataset/Plane_detect_datasets/VOCdevkit_lineextract_detect/VOC2007/Annotations/'  # 文件夹的路径
