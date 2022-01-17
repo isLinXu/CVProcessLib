@@ -33,5 +33,5 @@ if __name__ == '__main__':
     npy_name = 'xml'
     readFiledir_saveNpy(file_dir,npy_name)
 
-    # npy_path = 'xml.npy'
-    # read_npyfile(npy_path)
+    npy_path = 'xml.npy'
+    read_npyfile(npy_path)
