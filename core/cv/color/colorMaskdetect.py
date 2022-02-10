@@ -30,8 +30,7 @@ def overlay_mask(mask, image):
 
 def find_biggest_contour(image):
     image = image.copy()
-    im2,contours, hierarchy = cv2.findContours(image, cv2.RETR_LIST,
-    cv2.CHAIN_APPROX_SIMPLE)
+    contours, hierarchy = cv2.findContours(image, cv2.RETR_LIST,cv2.CHAIN_APPROX_SIMPLE)
     contour_sizes = [(cv2.contourArea(contour), contour) for contour in    contours]
     biggest_contour = max(contour_sizes, key=lambda x: x[0])[1]
     mask = np.zeros(image.shape, np.uint8)
@@ -49,7 +48,7 @@ def circle_countour(image, countour):
 
 
 # First load the image and examine the properties of that image, such as the color spectrum and the dimensions.
-image = cv2.imread('images/parking_cars.jpg')
+image = cv2.imread('/home/linxu/PycharmProjects/CVProcessLib/images/lena.png')
 
 # Since the order of the image stored in the memory is Blue Green Red (BGR), we need to convert it into RGB.
 image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
