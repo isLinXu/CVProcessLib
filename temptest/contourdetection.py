@@ -135,7 +135,7 @@ def raster_scan(img):
     return contours, parent, border_type
 
 if __name__ == '__main__':
-    file = '/home/hxzh02/PycharmProjects/cvprocess-lib/images/lena.png'
+    file = '/home/linxu/PycharmProjects/CVProcessLib/images/lena.png'
     img = cv2.imread(file)
     # img = np.array(ast.literal_eval(input()))
     contours, parent, border_type = raster_scan(img)
