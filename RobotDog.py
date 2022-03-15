@@ -291,7 +291,7 @@ def main():
     cdist = 1.5
     # 创建一座小山
     createHill()
-    # Create 创建一个由基本关节点组成的狗或加载一个 urdf
+    # Create 创建一个由基本关节点组成的狗或加载一个urdf
     base_body, linkCollisionShapeIndices = createDogJoints()
 
     ## dog shape parameters
@@ -304,60 +304,59 @@ def main():
     # distance of the COM from the legs along y direction
     botWidthfmCenter = 0.1
 
-    # positioning of all the combined joints
+    # 所有组合关节的定位
     xoffh = 0.05
     yoffh = 0.05
     upperLegLength = 0.3
     lowerLegLength = 0.3
 
-    # god initial dynamics parameters
-
-    yawInitial = 1.3  ##controls yaw of the robot
+    # 初始动力学参数
+    yawInitial = 1.3  # 控制机器人的偏航
 
     linkPositions, indices, jointTypes, axis = designJoints(botCenterToFront, botWidthfmCenter, xoffh, yoffh,
                                                             botCenterToBack, upperLegLength, lowerLegLength)
-
-    # Drop the body in the scene at the following body coordinates
+    # 将身体放在场景中的以下身体坐标处
     basePosition = [0, 0, 1]
     baseOrientation = [0, 0, 0, 1]
-    # Main function that creates the dog
+
+    # 创建机器狗的主函数
     dog = dogBody(base_body, basePosition, baseOrientation, linkCollisionShapeIndices, linkPositions, indices,
                   jointTypes, axis)
 
     # Due to the weight the prismatic extraweight block needs to be motored up
-
+    # 由于重量,棱柱形超重块需要被驱动起来
     initialBalance(dog, joint=16)
 
-    ##set gravity
+    # 设置重力
     setEnv()
     addFrictionFootjoints(dog)
 
-    # Pre-init robot position
+    # 预初始化机器人位置
     setlegsxyz([botCenterToFront, botCenterToFront, botCenterToBack, botCenterToBack],
                [botWidthfmCenter + 0.1, -botWidthfmCenter - 0.1, botWidthfmCenter + 0.1, -botWidthfmCenter - 0.1],
                [-0.5, -0.5, -0.5, -0.5], [1, 1, 1, 1], botCenterToFront, botWidthfmCenter, yoffh, upperLegLength,
                lowerLegLength, dog, botCenterToBack)
 
-    ## time to pause from initial config walking state
+    # 从初始配置行走状态暂停的时间
     t0 = time.time()
     t = time.time()
     while ((t - t0) < 4):
         t = time.time()
 
+    # 将机器人中心设置为从原点1沿x和y的初始距离，沿Z为0.5
     robotCenter = np.array([1, 1, 0.5])  ### sets the init distance from the origin 1 along x and y, 0.5 alongz
-    ##
+
     footJointsPtsI = np.array([[botCenterToFront, botCenterToFront, botCenterToBack, botCenterToBack],
                                [botWidthfmCenter + 0.1, -botWidthfmCenter - 0.1, botWidthfmCenter + 0.1,
                                 -botWidthfmCenter - 0.1],
                                [-0.5, -0.5, -0.5, -0.5]])
-    # Set body to the robot pos
-    # Init body position and orientation
+    # 初始化机器狗的位置与方向
     quat = p.getQuaternionFromEuler([0, 0, yawInitial])
-    p.resetBasePositionAndOrientation(dog, robotCenter,
-                                      quat)  ###set base position of dog urdf to robotCenter and base angle to quat
-    # Init leg abs pos
+    # 将狗urdf的基本位置设置为机器人中心，将基本角度设置为quat
+    p.resetBasePositionAndOrientation(dog, robotCenter,quat)
+    # 初始化腿部绝对位置
     RyawInitial = RotYawr(yawInitial)
-    # transform the foot joints from robot frame to the world frame and move them by robotCenter
+    # 将脚关节从机器人框架转换为世界框架，并通过robotCenter移动它们
     legsOnGroundPos = (np.dot(RyawInitial, footJointsPtsI).T + robotCenter).T  # Apply rotation plus translation
 
     yawRobotFrame = RotYawr(yawInitial)
@@ -368,8 +367,8 @@ def main():
     setlegsxyz(dlegsR[0], dlegsR[1], dlegsR[2], [1, 1, 1, 1], botCenterToFront, botWidthfmCenter, yoffh, upperLegLength,
                lowerLegLength, dog, botCenterToBack)
 
-    # Calculate a new robot center position from the average of the feet positions
-    # Calculate a new robot yaw ditrection also from the feet positions
+    # 根据双脚位置的平均值计算一个新的机器人中心位置
+    # 计算一个新的机器人偏航方向也从脚的位置
     frontLegsCenter = (legsOnGroundPos[:, 0] + legsOnGroundPos[:, 1]) / 2.0
     backLegCenter = (legsOnGroundPos[:, 2] + legsOnGroundPos[:, 3]) / 2.0
     fwdBwdCenterDistance = frontLegsCenter - backLegCenter
@@ -394,11 +393,11 @@ def main():
     drp = 0
 
     # 行走步态设置
-    # Leg sequence (for rotating the robot, I chose to chg legs in the order front-left, fr, br, bl)
-    # lseq=[0,1,3,2]     # 步行步态
-    # lseqp=[0,1,3,2]    # 步行步态
-    lseq=[2,0,3,1]     # 小跑步态
-    lseqp=[2,0,3,1]    # 小跑步态
+    #腿部顺序（对于旋转机器人，我选择按左前,右前,左后,右后的顺序切换腿部）
+    lseq=[0,1,3,2]     # 步行步态
+    lseqp=[0,1,3,2]    # 步行步态
+    # lseq=[2,0,3,1]     # 小跑步态
+    # lseqp=[2,0,3,1]    # 小跑步态
     # lseq = [0, 2, 1, 3]  # 缓行步态
     # lseqp = [0, 2, 1, 3] # 缓行步态
     # 设置按键控制
@@ -408,30 +407,36 @@ def main():
                                      cameraTargetPosition=cubePos)
 
         keys = p.getKeyboardEvents()
-        #通过Keys来控制相机位置
+        # 通过Keys来控制相机位置
+        # 向右平移视角
         if keys.get(100):  # D
             cyaw += 1
+        # 向左平移视角
         if keys.get(97):  # A
             cyaw -= 1
+        # 向下调整视角
         if keys.get(99):  # C
             cpitch += 1
+        # 向上调整视角
         if keys.get(102):  # F
             cpitch -= 1
+        # 拉远距摄像头
         if keys.get(122):  # Z
             cdist += .01
+        # 拉近摄像头
         if keys.get(120):  # X
             cdist -= .01
         #改变机器人行走的键（fwd, bkw, rot right, rot left）
-        if keys.get(65297):  # Up
+        if keys.get(65297):  # Up 前
             drp = 0
-        if keys.get(65298):  # Down
+        if keys.get(65298):  # Down 后
             drp = 2
-        if keys.get(65296):  # Right
+        if keys.get(65296):  # Right 右
             drp = 1
             centerOfRotation = robotCenter  # Set the center for the robot rotation to the current robot pos
             # 改变腿的顺序，使前臂张开而不是闭合
             lseqp = [1, 0, 2, 3]
-        if keys.get(65295):  # Left
+        if keys.get(65295):  # Left 左
             drp = 3
             centerOfRotation = robotCenter
 
@@ -466,7 +471,7 @@ def main():
             xoff -= 0.004 * (-1 + 2 * int(k / 2))
             yoff -= 0.004 * (-1 + 2 * (k % 2))
 
-            # Recalc leg rel pos in desired robot frame
+        # Recalc leg rel pos in desired robot frame
         newGroundPos = (legsOnGroundPos.T - robotCenter).T  # Translate
         dlegsR = np.dot(yawRobotFrame.T, newGroundPos)  # Rotate (Note the inverse rotation is the transposed matrix)
         # Then apply the body movement and set the legs
