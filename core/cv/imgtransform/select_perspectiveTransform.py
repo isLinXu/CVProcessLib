@@ -9,6 +9,7 @@ import cv2
 import numpy as np
 import time
 
+
 # 选择图像上的四个点以捕获所需区域
 def draw_circle(event, x, y, flags, param):
     global img
@@ -17,6 +18,7 @@ def draw_circle(event, x, y, flags, param):
 
     if event == cv2.EVENT_LBUTTONDOWN:
         cv2.circle(img, (x, y), 5, (0, 255, 0), -1)
+        print('(x,y):', (x, y))
         pts[pointIndex] = (x, y)
         print(pointIndex)
         pointIndex = pointIndex + 1
@@ -43,9 +45,11 @@ def get_persp(image, pts):
 
 if __name__ == '__main__':
     time.sleep(1.1)
-    path = '/home/linxu/Git/PerspectiveTransform/img.jpeg'
+    # path = '/home/linxu/Desktop/计量中心数据集/电表流水线0/01.png'
+    path = '/home/linxu/Desktop/计量中心数据集/电表流水线1/02.png'
+
     img = cv2.imread(path)
-    img = cv2.resize(img, (768, 576))
+    # img = cv2.resize(img, (768, 576))
     # 初始化坐标点并存储输入点
     pts = [(0, 0), (0, 0), (0, 0), (0, 0)]
     pointIndex = 0
@@ -67,4 +71,3 @@ if __name__ == '__main__':
         if key == 27:
             break
     cv2.destroyAllWindows()
-    # cap.release()
