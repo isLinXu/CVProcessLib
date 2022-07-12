@@ -144,10 +144,6 @@ def show_label_from_img(xml_path, jpg_path, root_path, is_show=False):
     xmlfilename = os.path.splitext(xml_path)[0]
     jpgfilename = os.path.splitext(jpg_path)[0]
     print('xmlfilename', xmlfilename)
-    # 读取所有xml文件
-    # xml_path = root_path + 'Annotations/' + xmlfilename + '.xml'
-    # 读取所有图片文件
-    # jpg_path = root_path + 'JPEGImages/' + jpgfilename + ".jpg"
 
     # 解析json格式的xml文件
     file = minidom.parse(xml_path)
@@ -202,7 +198,7 @@ def show_label_from_img(xml_path, jpg_path, root_path, is_show=False):
         image = cv2.putText(img, label_name, org, font, fontscale, color, thickness, cv2.LINE_AA)
 
         # 保存结果
-        cv2.imwrite(root_path + "output/" + jpgfilename + '.jpg', img)
+        cv2.imwrite(root_path + "output/" + 'jpgfilename' + '.jpg', img)
         if is_show:
             cv2.imshow("img", image)
             cv2.waitKey()
@@ -227,10 +223,12 @@ if __name__ == '__main__':
     |-root/
     |--root/Annotations/017.xml"
     |--root/JPEGImages/017.jpg
+    
     '''
-    file_name = '017'
-    xml_path = "/media/hxzh02/SB@home/hxzh/Dataset/Plane_detect_datasets/VOCdevkit_lineextract_detect/VOC2007/Annotations/" + file_name + ".xml"  # windows系统用双斜线
-    jpg_path = "/media/hxzh02/SB@home/hxzh/Dataset/Plane_detect_datasets/VOCdevkit_lineextract_detect/VOC2007/JPEGImages/" + file_name + ".jpg"
-    root_path = '/media/hxzh02/SB@home/hxzh/Dataset/Plane_detect_datasets/VOCdevkit_lineextract_detect/VOC2007/'
+
+    file_name = '主变3'
+    xml_path = "/home/linxu/Desktop/无人机项目方案/开关/" + file_name + ".xml"  # windows系统用双斜线
+    jpg_path = "/home/linxu/Desktop/无人机项目方案/开关/" + file_name + ".png"
+    root_path = '/home/linxu/Desktop/无人机项目方案/开关/'
     is_show = True
     show_label_from_img(xml_path=xml_path, jpg_path=jpg_path, root_path=root_path, is_show=is_show)
