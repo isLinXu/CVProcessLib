@@ -25,101 +25,29 @@ cvprocess-lib
 ├── core
 │   ├── cv
 │   │   ├── color
-│   │   │   ├── colorcut.py
-│   │   │   ├── colorDection.py
-│   │   │   ├── colorMatching.py
-│   │   │   ├── ColorRecognition.py
-│   │   │   └── selectColor.py
 │   │   ├── contour
-│   │   │   ├── prewitt.py
-│   │   │   └── selectCanny.py
 │   │   ├── features
-│   │   │   ├── features.py
-│   │   │   └── globals.py
 │   │   ├── imgtransform
-│   │   │   ├── RotationCorrection.py
-│   │   │   ├── rotation.py
-│   │   │   └── scaleDown.py
 │   │   ├── light
-│   │   │   └── light_adapt.py
 │   │   ├── line
-│   │   │   └── LineDetection.py
 │   │   ├── ROI
-│   │   │   ├── DP_ROI.py
-│   │   │   └── selectROI.py
 │   │   ├── subtractor
-│   │   │   ├── BackgroundSubtractor.py
-│   │   │   ├── grabcut.py
-│   │   │   ├── panelAbstractCut.py
-│   │   │   └── test.py
 │   │   ├── threshold
-│   │   │   ├── thresholdSegmentations.py
-│   │   │   └── thresholdSplit.py
 │   │   ├── tools
-│   │   │   ├── enhancement.py
-│   │   │   ├── image
-│   │   │   │   └── test.png
-│   │   │   ├── image_color.py
-│   │   │   ├── image_enhancement.py
-│   │   │   ├── image_filtering.py
-│   │   │   ├── image_outline.py
-│   │   │   ├── image_transformation.py
-│   │   │   ├── main.py
-│   │   │   └── utils.py
 │   │   └── video
-│   │       ├── getvideo.py
-│   │       └── videoprocess.py
 │   ├── log
-│   │   └── err_log
-│   │       └── except_err.py
 │   ├── math
-│   │   └── hx_math.py
 │   └── network
-│       └── Crawler_downloads_Baidu_pictures.py
 ├── images
-│   ├── 表计
-│   ├── 呼吸器
-│   ├── 数显表
-│   └── 状态指示器
 ├── initize.py
-├── LICENSE
 ├── package
-│   ├── Respirator_Recognition.py
-│   └── StatusIndicator_Recognition.py
 ├── README.md
 ├── temptest
-│   └── result.py
 ├── testfunc.py
 ├── tools
-│   ├── cut_label_image.py
-│   └── XML_tran_coco.py
 └── utils
     ├── globals.py
     └── __init__.py
 ```
 
 
-
-软件架构说明
-
-
-#### 三、依赖项
-
-1.  xxxx
-2.  xxxx
-3.  xxxx
-
-#### 四、使用说明
-
-1.  xxxx
-2.  xxxx
-3.  xxxx
-
-#### 参与贡献
-
-1.  Fork 本仓库
-2.  新建 Feat_xxx 分支
-3.  提交代码
-4.  新建 Pull Request
-
-6.  https://gitee.com/gitee-stars/)
