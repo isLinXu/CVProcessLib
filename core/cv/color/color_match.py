@@ -76,13 +76,16 @@ def getColorMask(img, lower = (0,0,0), higher= (255,255,255)):
 
 if __name__ == '__main__':
     # img_path = '/home/linxu/Desktop/南宁电厂项目/OCR/0_0_0_15_0_0/1000001_20220812230113_v.jpeg'
-    img_path = '/home/linxu/Desktop/南宁电厂项目/OCR/0_0_0_15_0_0/1000034_20220813222452_v.jpeg'
+    img_path = '/home/linxu/Desktop/山西焦化项目/test_image/2.png'
     src = cv2.imread(img_path)
     cv2.imshow('src', src)
 
-    lower = (0, 70, 152)
+    # lower = (0, 70, 152)
+    # higher = (255, 255, 255)
+    lower = (0, 74, 200)
     higher = (255, 255, 255)
-
+    # colorLow [  0  74 200]
+    # colorHigh [255 255 255]
     # lower = (0, 70, 140)
     # higher = (255, 140, 255)
 
@@ -98,4 +101,50 @@ if __name__ == '__main__':
 
     mask_red = getColorMask(src, lower, higher)
     cv2.imshow('mask_red', mask_red)
-    cv2.waitKey()
+    # cv2.waitKey()
+
+    # import cv2
+    # import numpy as np
+    #
+    # gray = cv2.cvtColor(src,cv2.COLOR_BGR2GRAY)
+    # ret, binary = cv2.threshold(gray,127,255,cv2.THRESH_BINARY)
+    #
+    contours, hierarchy = cv2.findContours(mask_red,cv2.RETR_TREE,cv2.CHAIN_APPROX_SIMPLE)
+    cv2.drawContours(src,contours,-1,(0,0,255),3)
+
+    cv2.imshow("img", src)
+    cv2.waitKey(0)
+
+
+
+    # img_file = r"D:\data\timg.jpg"
+    # img = cv2.imread(img_file)
+    points = contours
+    # print('contours', contours)
+    # points = np.array([[154, 154],[253, 171], [154, 176],[248, 204]], np.int32)  # 数据类型为int32或者float32
+    # print(points)
+    # points = points.reshape(4, 1, 2)  #注意shape必须为n*1*2
+    # print(points)
+    # area, triangle = cv2.minEnclosingTriangle(points)
+    # print(area, triangle, triangle.shape)
+    # for i in range(3):
+    #     point1 = triangle[i, 0, :]
+    #     point2 = triangle[(i+1)%3, 0, :]
+    #     # print(point1)
+    #     cv2.line(src, tuple(point1), tuple(point2), (0, 0, 255), 2)
+    #
+    # cv2.imshow("img", src)
+    # cv2.waitKey(0)
+    # cv2.destroyAllWindows()
+
+    # contours, hierarchy = cv2.findContours(binary, cv2.RETR_LIST, cv2.CHAIN_APPROX_SIMPLE)
+
+    area, trg1 = cv2.minEnclosingTriangle(contours[0])
+    # print(area)
+    print(trg1)
+    for i in range(0, 3):
+        cv2.line(src, tuple(trg1[i][0]), tuple(trg1[(i + 1) % 3][0]), (0, 255, 0), 2)
+
+        cv2.imshow("img2", src)
+        cv2.waitKey()
+    # cv2.destroyAllWindows()
