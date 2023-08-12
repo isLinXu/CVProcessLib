@@ -132,10 +132,10 @@ def get_video_duration(video_path):
 
 if __name__ == '__main__':
     # 视频路径
-    video_path = '/Users/gatilin/youtu-work/34020000001320000003_2023-08-11_05-19-27.mp4'
+    video_path = '/Users/gatilin/youtu-work/SVAP/蜀道集团项目/weiting/34020000001320000003_2023-08-11_14-19-01.mp4'
 
     # 输出目录
-    output_path = '/Users/gatilin/youtu-work/34020000001320000003_2023-08-11_05-19-27'
+    output_path = '/Users/gatilin/youtu-work/SVAP/蜀道集团项目/weiting/34020000001320000003_2023-08-11_14-19-01'
 
     # 获取视频播放时间段区间
     duration_minutes, duration_seconds = get_video_duration(video_path)
@@ -144,8 +144,8 @@ if __name__ == '__main__':
     print(f"视频总时长为：{duration_minutes} 分钟 {duration_seconds} 秒")
 
     # 视频播放开始时间&结束时间-格式：分钟:秒钟
-    start_time = '8:35'
-    end_time = '11:35'
+    start_time = '12:10'
+    end_time = '14:50'
 
     # 抽帧帧率
     frame_rate = 3
