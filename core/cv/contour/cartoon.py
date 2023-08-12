@@ -77,5 +77,5 @@ def cartoonify(filename, out_size, out_file="/tmp/cartoon.png", **kwargs):
 
 
 if __name__ == "__main__":
-    file_name = '/home/hxzh02/PycharmProjects/cvprocess-lib/images/lena.png'
+    file_name = '../../../images/lena.png'
     cartoonify(file_name,(800, 600))
